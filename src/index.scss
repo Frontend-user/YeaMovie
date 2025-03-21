@@ -1,10 +1,12 @@
 @import "styles/global.scss";
+@import 'assets/fonts/Acrom/stylesheet.css';
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: var(--bg-color);
+  font-family: Acrom,sans-serif;
+  //background: var(--bg-color);
 
 }
 

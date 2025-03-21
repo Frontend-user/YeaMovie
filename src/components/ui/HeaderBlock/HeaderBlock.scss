@@ -1,3 +1,17 @@
-.HeaderBlock {
+.header {
+  background: var(--bg-dark-color);
 
+  &__inner {
+    //padding: 34px 92px 10px 92px;
+    display: flex;
+    padding: 20px 20px 20px 92px;
+    //justify-content: space-around;
+  }
+
+  &__logo {
+  }
+
+  &__search-wrapper {
+    margin-left: 124px;
+  }
 }
