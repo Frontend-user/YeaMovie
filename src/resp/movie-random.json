@@ -1,0 +1,241 @@
+{
+  "id": 709976,
+  "type": "tv-series",
+  "externalId": {
+    "kpHD": null,
+    "imdb": "tt2336655",
+    "tmdb": 35066
+  },
+  "name": "Кэндис расскажет всё",
+  "rating": {
+    "kp": 0,
+    "imdb": 7.7,
+    "filmCritics": 0,
+    "russianFilmCritics": 0,
+    "await": 0
+  },
+  "description": "Знаменитый дизайнер интерьеров Кэндис Олсон преображает унылые помещения, используя элементы промышленного урбанистического дизайна и принципов создания несокрушимых конструкций.",
+  "votes": {
+    "kp": 46,
+    "imdb": 52,
+    "filmCritics": 0,
+    "russianFilmCritics": 0,
+    "await": 0
+  },
+  "distributors": {
+    "distributor": null,
+    "distributorRelease": null
+  },
+  "premiere": {
+    "russia": "2012-10-17T00:00:00.000Z",
+    "bluray": null,
+    "cinema": null,
+    "digital": null,
+    "dvd": null,
+    "world": null
+  },
+  "slogan": null,
+  "year": 2011,
+  "poster": {
+    "url": null,
+    "previewUrl": null
+  },
+  "facts": [],
+  "genres": [
+    {
+      "name": "реальное ТВ"
+    }
+  ],
+  "countries": [
+    {
+      "name": "Канада"
+    }
+  ],
+  "seasonsInfo": [
+    {
+      "number": 2,
+      "episodesCount": 26
+    },
+    {
+      "number": 1,
+      "episodesCount": 26
+    },
+    {
+      "number": 3,
+      "episodesCount": 26
+    },
+    {
+      "number": 4,
+      "episodesCount": 13
+    },
+    {
+      "number": 5,
+      "episodesCount": 18
+    }
+  ],
+  "persons": [
+    {
+      "id": 1823902,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_1823902.jpg",
+      "name": "Кэндис Олсон",
+      "enName": "Candice Olson",
+      "profession": "актеры",
+      "enProfession": "actor"
+    },
+    {
+      "id": 3028582,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_3028582.jpg",
+      "name": null,
+      "enName": "Wolfgang Webb",
+      "profession": "композиторы",
+      "enProfession": "composer"
+    },
+    {
+      "id": 614351,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_614351.jpg",
+      "name": "Стив Лондон",
+      "enName": "Steve London",
+      "profession": "композиторы",
+      "enProfession": "composer"
+    },
+    {
+      "id": 1686836,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_1686836.jpg",
+      "name": "Джэми Шилдс",
+      "enName": "Jamie Shields",
+      "profession": "композиторы",
+      "enProfession": "composer"
+    },
+    {
+      "id": 674695,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_674695.jpg",
+      "name": "Энни Брэдли",
+      "enName": "Annie Bradley",
+      "profession": "режиссеры",
+      "enProfession": "director"
+    },
+    {
+      "id": 1009451,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_1009451.jpg",
+      "name": null,
+      "enName": "Arlene Hazzan Green",
+      "profession": "режиссеры",
+      "enProfession": "director"
+    },
+    {
+      "id": 3359462,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_3359462.jpg",
+      "name": null,
+      "enName": "Mandy Thomson",
+      "profession": "монтажеры",
+      "enProfession": "editor"
+    },
+    {
+      "id": 2952574,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_2952574.jpg",
+      "name": null,
+      "enName": "Frank Moressa",
+      "profession": "монтажеры",
+      "enProfession": "editor"
+    },
+    {
+      "id": 1328517,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_1328517.jpg",
+      "name": "Камерон Хэй",
+      "enName": "Cameron Hay",
+      "profession": "операторы",
+      "enProfession": "operator"
+    },
+    {
+      "id": 6057115,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_6057115.jpg",
+      "name": null,
+      "enName": "Mark W. Johnston",
+      "profession": "продюсеры",
+      "enProfession": "producer"
+    },
+    {
+      "id": 944957,
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_944957.jpg",
+      "name": null,
+      "enName": "Catherine Annau",
+      "profession": "продюсеры",
+      "enProfession": "producer"
+    }
+  ],
+  "images": {
+    "postersCount": 1,
+    "backdropsCount": 0,
+    "framesCount": 0
+  },
+  "lists": [],
+  "spokenLanguages": [
+    {
+      "name": "English",
+      "nameEn": "English"
+    }
+  ],
+  "productionCompanies": [],
+  "typeNumber": 2,
+  "alternativeName": "Candice Tells All",
+  "backdrop": {
+    "url": null,
+    "previewUrl": null
+  },
+  "budget": {},
+  "enName": null,
+  "movieLength": null,
+  "names": [
+    {
+      "name": "Кэндис расскажет всё"
+    },
+    {
+      "name": "Candice Tells All"
+    }
+  ],
+  "networks": null,
+  "status": "completed",
+  "subType": "Сценарированный",
+  "fees": {
+    "world": {},
+    "russia": {},
+    "usa": {}
+  },
+  "updatedAt": "2025-02-23T01:35:35.500Z",
+  "ratingMpaa": null,
+  "shortDescription": null,
+  "technology": {
+    "hasImax": false,
+    "has3D": false
+  },
+  "ticketsOnSale": false,
+  "sequelsAndPrequels": [],
+  "similarMovies": [],
+  "imagesInfo": {
+    "framesCount": 0
+  },
+  "ageRating": 12,
+  "logo": {
+    "url": null,
+    "previewUrl": null
+  },
+  "watchability": {
+    "items": []
+  },
+  "releaseYears": [
+    {
+      "start": 2011,
+      "end": 2011
+    }
+  ],
+  "top10": null,
+  "top250": null,
+  "deletedAt": null,
+  "isSeries": true,
+  "seriesLength": 30,
+  "totalSeriesLength": null,
+  "videos": {
+    "trailers": []
+  },
+  "isTmdbChecked": true
+}
