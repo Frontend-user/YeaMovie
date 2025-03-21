@@ -1,0 +1,13 @@
+.ui-button {
+  border-radius: 60px;
+  padding: 12px 40px;
+  border: none;
+  outline: none;
+  color: var(--primary-light-color);
+  font-weight: var(--primary-font-weight);
+  font-size: var(--primary-font-size);
+  background: var(--red-color);
+  &:hover {
+    cursor: pointer;
+  }
+}

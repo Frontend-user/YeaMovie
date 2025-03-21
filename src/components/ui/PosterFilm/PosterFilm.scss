@@ -1,3 +1,56 @@
-.PosterFilm {
+.poster-film {
+  border-radius: 10px;
+  background: var(--bg-dark-color);
+  color: var(--primary-light-color);
+
+  &__inner {
+    padding: 34px;
+
+    //display: flex;
+    display: grid;
+    grid-template-columns: 6fr 9fr;
+    grid-column-gap: 40px;
+  }
+
+  &__info {
+  }
+  &__image-wrapper{
+    //width: 100%;
+    //max-width: 76px;
+    //overflow: hidden;
+  }
+  &__image {
+    width: 100%;
+    height: auto;
+    //max-width: 100%;
+    //display: block;
+    //height: auto;
+    border-radius: 10px;
+    //object-fit: ;
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 98px;
+  }
+
+  &__name {
+    font-size: 60px;
+    font-weight: var(--primary-font-weight);
+    margin-bottom: 20px;
+  }
+
+  &__description {
+    font-weight: var(--secondary-font-weight);
+    font-size: var(--primary-font-size);
+    margin-bottom: 46px;
+  }
+
+  &__button-wrapper {
+    //margin-bottom: 6px;
+    max-width: 190px;
+  }
+
 
 }
