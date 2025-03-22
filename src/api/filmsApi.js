@@ -42,5 +42,16 @@ export const filmsApi = {
             })
         return [data, error, isLoading]
 
+    },
+    async getFilmsByFilters(filters) {
+        const [data, error, isLoading] = await useFetch(
+            API_PATHS.MOVIE,
+            {
+                page: 1,
+                limit: 4,
+                ...filters
+            }
+        )
+        return [data, error, isLoading]
     }
 }
