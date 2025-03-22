@@ -12,7 +12,7 @@ export function useFetch(path, params) {
         try {
             const response = await fetch(url, {
                 headers: {
-                    'X-API-KEY': API_TOKEN
+                    'X-API-KEY': API_TOKEN + '111'
                 },
             })
             const data = await response.json()

@@ -3,7 +3,7 @@ import UiSelect from "../../ui/UiSelect/UiSelect.jsx";
 import UiSort from "../../ui/UiSort/UiSort.jsx";
 import {useSelectData} from "../../../hooks/useSelectData.js";
 
-const SelectGroup = () => {
+const SelectGroup = ({changeFilter,filters}) => {
 
 
         const {
@@ -12,32 +12,17 @@ const SelectGroup = () => {
             years, setYears,
             rating, setRating,
             filmTypes, setFilmTypes,
-            filters, setFilters, selectItem, testItem, setTestItem
+            selectItem
         } = useSelectData()
 
         const handleFilterFields = (id, item, setItem, fieldKey) => {
             const name = selectItem(id, item, setItem)
-            // console.log('fieldKey', fieldKey)
-            // if (fieldKey && name !== undefined) {
-
-            // setFilters(pr => ({...pr, [fieldKey]: name}));
-            setFilters(pr => ({
-                ...pr,
-                'CHANGED': `${Math.random() * 10}fsd`
-            }));
-            // console.log(filters,'FILTERS IN')
-            // setFilters(elem)
-            // console.log('elEM: ', elem)
-            // }
-            // setFilters(pr => ({...pr, [fieldKey]: name}))
-            // console.log(filters)/**/
-            // setTestItem({})
-            // setFilters({...filters, [fieldKey]: name})
+            changeFilter({[fieldKey]: name})
         }
 
-    // useEffect(() => {
-    //     console.log('SELECTGROP COMPONENT',filters)
-    // }, [filters]);
+        useEffect(() => {
+            console.log('SELECTGROP',filters)
+        }, [filters]);
         return (
             <>
                 <UiSelect className="main-page__ui-select"
