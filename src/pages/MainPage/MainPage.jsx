@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import HeaderBlock from "../../components/ui/HeaderBlock/HeaderBlock.jsx";
 import './MainPage.scss'
 import PosterFilm from "../../components/ui/PosterFilm/PosterFilm.jsx";
@@ -10,6 +10,9 @@ import filmCardImage from '../../assets/images/film-card-img.png'
 import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
 import UiSelect from "../../components/ui/UiSelect/UiSelect.jsx";
 import UiSort from "../../components/ui/UiSort/UiSort.jsx";
+import {filmsApi} from "../../api/filmsApi.js";
+import {useFetch} from "../../hooks/useFetch.js";
+import {API_PATHS} from "../../helpers/constants.js";
 
 const {title, filmName, description, buttonText} = {
     title: 'УЖЕ В КИНО',
@@ -19,64 +22,6 @@ const {title, filmName, description, buttonText} = {
     buttonText: 'Смотреть'
 }
 
-const filmsList = [
-    {
-        id: 1,
-        name: 'Побег из Шоушенка',
-        year: 1994,
-        grade: 9,
-        image: filmCardImage
-    },
-    {
-        id: 2,
-        name: 'Побег из Шоушенка',
-        year: 1994,
-        grade: 9,
-        image: filmCardImage
-    },
-    {
-        id: 3,
-        name: 'Побег из Шоушенка',
-        year: 1994,
-        grade: 9,
-        image: filmCardImage
-    },
-    {
-        id: 4,
-        name: 'Побег из Шоушенка',
-        year: 1994,
-        grade: 9,
-        image: filmCardImage
-    },
-    {
-        id: 5,
-        name: 'Побег из Шоушенка',
-        year: 1994,
-        grade: 9,
-        image: filmCardImage
-    },
-    {
-        id: 6,
-        name: 'Побег из Шоушенка',
-        year: 1994,
-        grade: 9,
-        image: filmCardImage
-    },
-    {
-        id: 7,
-        name: 'Побег из Шоушенка',
-        year: 1994,
-        grade: 9,
-        image: filmCardImage
-    },
-    {
-        id: 8,
-        name: 'Побег из Шоушенка',
-        year: 1994,
-        grade: 9,
-        image: filmCardImage
-    },
-]
 
 const MainPage = () => {
     const [filmCategories, setFilmCategories] = useState([
@@ -113,6 +58,9 @@ const MainPage = () => {
             name: 'Ужасы3'
         },
     ])
+    const [filmsList, setFilmsList] = useState([])
+
+    const [filmsListLoading, setFilmsListLoading] = useState(true)
     const selectItem = (id, selectList, setSelectList) => {
         const list = [...selectList]
         list.forEach((_) => {
@@ -126,9 +74,28 @@ const MainPage = () => {
 
         setSelectList(list)
     }
-    // const handleSelect =  (id,)=>{
-    //     selectItem(id,selectList,setSelectList)
-    // }
+    useEffect(() => {
+        async function getData() {
+            setFilmsListLoading(true)
+            const findSelectedCategoryId = filmCategories.findIndex((item) => item.selected) + 1
+            if (findSelectedCategoryId === 1) {
+                const [data, error, isLoading] = await filmsApi.getPopularFilms()
+                setFilmsList(data)
+                setFilmsListLoading(isLoading)
+            } else if (findSelectedCategoryId === 2) {
+                const [data, error, isLoading] = await filmsApi.getPopularSerials()
+                setFilmsList(data)
+                setFilmsListLoading(isLoading)
+            } else if (findSelectedCategoryId === 3) {
+                const [data, error, isLoading] = await filmsApi.getRandomFilms()
+                setFilmsList(data)
+                setFilmsListLoading(isLoading)
+            }
+        }
+
+        getData()
+    }, [filmCategories]);
+
     return (
         <div className="main-page">
             <HeaderBlock/>
@@ -153,7 +120,11 @@ const MainPage = () => {
                         <UiButton text='Смотреть все' type="arrow-right"/>
                     </div>
                     <div className="main-page__film-list-wrapper">
-                        <FilmList list={filmsList}/>
+                        {
+                            filmsListLoading ?
+                                <div>Загрузка фильмов...</div> :
+                                <FilmList list={filmsList}/>
+                        }
                     </div>
                 </div>
 
@@ -176,7 +147,7 @@ const MainPage = () => {
                         <UiButton text='Смотреть все' type="arrow-right"/>
                     </div>
                     <div className="main-page__film-list-wrapper">
-                        <FilmList list={filmsList.slice(0, 4)}/>
+                        {/*<FilmList list={filmsList.slice(0, 4)}/>*/}
                     </div>
                 </div>
             </div>
