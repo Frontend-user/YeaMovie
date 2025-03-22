@@ -18,20 +18,7 @@ const {title, filmName, description, buttonText} = {
         ' группа колонизаторов сталкивается с самой ужасающей формой жизни во Вселенной.',
     buttonText: 'Смотреть'
 }
-const filmCategories = [
-    {
-        id: 1,
-        name: 'Популярные фильмы'
-    },
-    {
-        id: 2,
-        name: 'Популярные сериалы'
-    },
-    {
-        id: 3,
-        name: 'Подборка фильмов'
-    }
-]
+
 const filmsList = [
     {
         id: 1,
@@ -92,6 +79,23 @@ const filmsList = [
 ]
 
 const MainPage = () => {
+    const [filmCategories, setFilmCategories] = useState([
+        {
+            id: 1,
+            name: 'Популярные фильмы',
+            selected: true
+        },
+        {
+            id: 2,
+            name: 'Популярные сериалы',
+            selected: false
+        },
+        {
+            id: 3,
+            name: 'Подборка фильмов',
+            selected: false
+        }
+    ])
     const [selectList, setSelectList] = useState([
         {
             id: 1,
@@ -109,10 +113,10 @@ const MainPage = () => {
             name: 'Ужасы3'
         },
     ])
-    const selectItem = (item) => {
+    const selectItem = (id, selectList, setSelectList) => {
         const list = [...selectList]
         list.forEach((_) => {
-            if (_.id === item.id) {
+            if (_.id === id) {
                 _.selected = true
             } else {
                 _.selected = false
@@ -122,6 +126,9 @@ const MainPage = () => {
 
         setSelectList(list)
     }
+    // const handleSelect =  (id,)=>{
+    //     selectItem(id,selectList,setSelectList)
+    // }
     return (
         <div className="main-page">
             <HeaderBlock/>
@@ -139,7 +146,8 @@ const MainPage = () => {
 
                 <div className="main-page__film-list-wrapper">
                     <div className="main-page__category-select-wrap">
-                        <CategorySelect list={filmCategories}/>
+                        <CategorySelect select={(id) => selectItem(id, filmCategories, setFilmCategories)}
+                                        list={filmCategories}/>
                     </div>
                     <div className="main-page__ui-button-arrow-right-wrap">
                         <UiButton text='Смотреть все' type="arrow-right"/>
@@ -156,11 +164,12 @@ const MainPage = () => {
                     </div>
                     <div className="main-page__selects-wrapper">
 
-                        <UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>
-                        <UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>
-                        <UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>
-                        <UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>
-                        <UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>
+                        <UiSelect className="main-page__ui-select"
+                                  select={(id) => selectItem(id, selectList, setSelectList)} list={selectList}/>
+                        {/*<UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>*/}
+                        {/*<UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>*/}
+                        {/*<UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>*/}
+                        {/*<UiSelect className="main-page__ui-select" select={selectItem} list={selectList}/>*/}
                         <UiSort className="main-page__sort-wrap "/>
                     </div>
                     <div className="main-page__ui-button-arrow-right-wrap">

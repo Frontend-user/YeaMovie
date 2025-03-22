@@ -20,7 +20,7 @@ const UiSelect = ({list, select, className}) => {
                     ?
                     <div className="ui-select__drop-down">
                         {list.map(item => (
-                            <div className="ui-select__option" onClick={() => selectItem(item)}
+                            <div className="ui-select__option" onClick={() => selectItem(item.id)}
                                  key={item.id}>{item.name}</div>
                         ))}
                     </div> : <div></div>
