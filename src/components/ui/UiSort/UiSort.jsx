@@ -1,9 +1,12 @@
 import './UiSort.scss'
+import sortIcon from '../../../assets/icons/sort-icon.svg'
 
-const UiSort = () => {
-    return ( 
-        <div>
-    
+const UiSort = ({className}) => {
+    return (
+        <div className={`${className} ui-sort`}>
+            <img
+                className="ui-sort__image"
+                src={sortIcon} alt=""/>
         </div>
     );
 };

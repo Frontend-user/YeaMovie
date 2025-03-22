@@ -1,3 +1,99 @@
-.UiSelect {
+.ui-select {
+  width: 148px;
+  height: 39px;
+  outline: none;
+  border-radius: 60px;
+  border: 1px solid var(--secondary-dark-color);
+  position: relative;
 
+    &__inner{
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  &__is-open {
+    border: none;
+  }
+  &__inner-is-open {
+
+    width: 148px;
+    //top: 0;
+    font-size: var(--secondary-font-size);
+    font-weight: var(--secondary-font-weight);
+    color: var(--text-grey-color);
+height: auto;
+    //border-top-left-radius: 15px;
+    //border-top-right-radius: 15px;
+    border-radius: 15px 15px 5px 5px;
+    padding-top: 40px;
+    box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, .08);
+
+  }
+
+  &__icon {
+    position: absolute;
+    right: 10px;
+    width: 15px;
+    height: 30px;
+  }
+
+  &__show-field {
+    font-size: var(--secondary-font-size);
+    font-weight: var(--secondary-font-weight);
+    color: var(--text-grey-color);
+    width: 148px;
+    border-radius: 60px;
+    height: 39px;
+    cursor: pointer;
+    display: flex;
+    padding-left: 20px;
+    //justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+
+    &:hover {
+      //background: #cecccc;
+      cursor: pointer
+    }
+  }
+
+  &__drop-down {
+    //width: 148px;
+    //top: 0;
+    //font-size: var(--secondary-font-size);
+    //font-weight: var(--secondary-font-weight);
+    //color: var(--text-grey-color);
+    //
+    ////border-top-left-radius: 15px;
+    ////border-top-right-radius: 15px;
+    //border-radius: 15px 22px 5px 5px;
+    //position: absolute;
+    //padding-top: 40px;
+    //box-shadow: 1px 1px 4px 4px rgba(0, 0, 0, .08);
+
+  }
+
+  &__option {
+    width: 148px;
+    //width: 100%;
+    height: 40px;
+    display: flex;
+    padding: 0 0 0 20px;
+    //justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      background: #cecccc;
+    }
+
+    //border: 1px solid var(--secondary-dark-color);
+    //appearance: none;
+    //width: 148px;
+    //height: 39px;
+    //outline: none;
+    //border-radius: 60px;
+    //border: 1px solid  var(--secondary-dark-color);
+  }
 }

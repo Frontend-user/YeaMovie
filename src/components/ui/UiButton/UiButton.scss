@@ -7,7 +7,27 @@
   font-weight: var(--primary-font-weight);
   font-size: var(--primary-font-size);
   background: var(--red-color);
+
   &:hover {
     cursor: pointer;
+  }
+
+  &__arrow-right {
+    position: relative;
+    background: var(--bg-light-color);
+    color: var(--primary-dark-color);
+    font-size: var(--secondary-font-size);
+    font-weight: var(--secondary-font-weight);
+
+    &:after {
+      right: -17px;
+      top: 14px;
+      position: absolute;
+      content:"";
+      width: 40px;
+      height: 40px;
+      background-image: url("../../../assets/icons/arrow-right-icon.svg");
+      background-repeat: no-repeat;
+    }
   }
 }

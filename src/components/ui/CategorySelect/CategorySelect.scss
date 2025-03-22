@@ -1,3 +1,28 @@
-.CategorySelect {
+.category-select {
+  display: flex;
+
+  &__item {
+    cursor: pointer;
+    border-radius: 60px;
+    margin-right: 50px;
+    padding: 11px 30px;
+    font-size: var(--primary-font-size);
+    font-weight: var(--secondary-font-weight);
+    color: var(--primary-grey-color);
+    background: var(--bg-light-color);
+    &:hover {
+      font-size: var(--primary-font-size);
+      font-weight: var(--primary-font-weight);
+      color: var(--primary-light-color);
+      background: var(--bg-dark-color);
+    }
+  }
+
+  &__selected {
+    font-size: var(--primary-font-size);
+    font-weight: var(--primary-font-weight);
+    color: var(--primary-light-color);
+    background: var(--bg-dark-color);
+  }
 
 }

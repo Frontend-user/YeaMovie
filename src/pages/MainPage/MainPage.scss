@@ -1,10 +1,49 @@
 .main-page {
+  min-height: 250vh;
+
   &__wrapper {
     max-width: 1320px;
     margin: 0 auto;
   }
+
   &__poster-wrapper {
     //padding: 60px;
-    padding: 60px 0 ;
+    padding: 60px 0;
+  }
+
+  &__film-list-wrapper {
+    margin-bottom: 100px;
+
+  }
+
+  &__ui-select {
+    margin-right: 20px;
+
+    &:nth-child(5) {
+      margin-right: 0;
+    }
+  }
+
+  &__sort-wrap {
+    margin-left: 40px;
+  }
+
+  &__selects-wrapper {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  &__category-filter-wrapper {
+    margin-bottom: 40px;
+  }
+
+  &__category-select-wrap {
+    margin-bottom: 20px;
+  }
+
+  &__ui-button-arrow-right-wrap {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
   }
 }
