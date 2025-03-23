@@ -1,6 +1,19 @@
 .search-film-page {
   &__wrapper {
-    margin: 80px auto;
+    margin: 32px auto 180px auto;
     max-width: 1320px;
+  }
+  &__routes {
+
+    margin-bottom: 72px;
+  }
+  &__title {
+    font-size: var(--primary-font-size);
+    font-weight: var(--primary-font-weight);
+    color: var(--primary-dark-color);
+    margin-bottom: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

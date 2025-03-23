@@ -4,6 +4,7 @@ import ImagesGrid from "../../components/AboutPage/ImagesGrid/ImagesGrid.jsx";
 import FilmDetails from "../../components/AboutPage/FilmDetails/FilmDetails.jsx";
 import './AboutPage.scss'
 import UiButton from "../../components/ui/UiButton/UiButton.jsx";
+import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
 
 const AboutPage = () => {
 
@@ -78,7 +79,10 @@ const AboutPage = () => {
         <div className="about-page">
             <HeaderBlock/>
             <div className="about-page__wrapper">
-
+                <div className="about-page__routes">
+                    <UiButton type="arrow-left" text="Главная"/>
+                    <UiButton type="arrow-left" text="Назад"/>
+                </div>
                 <FilmDetails
                     image={film.poster.url}
                     name={film.name}
@@ -96,8 +100,10 @@ const AboutPage = () => {
                 <div className="about-page__arrow-button-wrap">
                     <UiButton type="arrow-right" text="Смотреть все"/>
                 </div>
-                <ImagesGrid/>
+                <ImagesGrid list={[film.poster.url, film.poster.url, film.poster.url,
+                    film.poster.url, film.poster.url, film.poster.url]}/>
             </div>
+            <FooterBlock/>
 
         </div>
     );
