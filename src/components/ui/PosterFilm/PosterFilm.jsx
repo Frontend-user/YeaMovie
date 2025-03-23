@@ -1,7 +1,10 @@
 import './PosterFilm.scss'
 import UiButton from "../UiButton/UiButton.jsx";
+import {useContext} from "react";
+import {RouteContext} from "../../../context/RoutesProvider.jsx";
 
 const PosterFilm = ({title, name, description, buttonText, image}) => {
+
     return (
         <div className="poster-film">
             <div className="poster-film__inner">

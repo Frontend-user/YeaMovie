@@ -18,6 +18,8 @@ const BigFilmList = ({list}) => {
             <div className="big-film-list__cards-wrap">
                 {list.map((film) => (
                     <BigFilmCard
+                        id={film.id}
+                        key={film.id}
                         image={film.poster.url}
                         name={film.name}
                         ratingKp={film.rating.kp}

@@ -1,14 +1,15 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
+import {filmsApi} from "../api/filmsApi.js";
 
 export const RouteContext = createContext()
 const RoutesProvider = ({children}) => {
     const [route, setRoute] = useState(window.location.pathname)
     const [page, setPage] = useState('/')
+    const [searchName, setSearchName] = useState('')
     const [selectedFilmId, setSelectedFilmId] = useState(1)
     const navigate = (newRoute) => {
         window.history.pushState({}, "", newRoute);
     };
-
     const changeRoute = (route) => {
         const arr = route.split('/')
         if (arr[1] === 'about-page') {
@@ -27,6 +28,7 @@ const RoutesProvider = ({children}) => {
     },)
     return (
         <RouteContext.Provider value={{
+                searchName, setSearchName,
             route, setRoute, page, setPage, selectedFilmId,
             changeRoute
         }}>

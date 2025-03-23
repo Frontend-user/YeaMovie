@@ -7,10 +7,12 @@ export function useFetch(path, params, needToFormatParams = true) {
     let error = null;
     let isLoading = true;
     let formattedParams = ''
+    let url = ''
     if (needToFormatParams) {
         formattedParams = formatRequestParams(params)
     }
-    const url = `${API_URL}/${path}${formattedParams}`
+    url = `${API_URL}/${path}${formattedParams}`
+
     const cb = async () => {
         try {
             const response = await fetch(url, {

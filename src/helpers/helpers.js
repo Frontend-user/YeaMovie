@@ -15,3 +15,13 @@ export function formatRequestParams(options) {
     console.log(result)
     return result
 }
+
+export   function debounce(fn, delay) {
+    let timer = null
+    return (...args) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            fn.apply(this, args)
+        }, delay)
+    }
+}

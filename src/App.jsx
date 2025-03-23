@@ -20,12 +20,13 @@ function App() {
     }, []);
     return (
         <>
+            {/*{searchName}*/}
             {/*{page}*/}
             {page === '/'
                 ? <MainPage/>
                 : page === '/about-page'
                     ? <AboutPage filmId={selectedFilmId}/>
-                    : page === '/search-film-page'
+                    : page === '/search'
                         ? <SearchFilmPage/>
                         : <div>NOT FOUNT PAGE
                             <button onClick={() => changeRoute('/')}>GO TO MAINPAGE </button>

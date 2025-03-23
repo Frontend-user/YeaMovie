@@ -1,10 +1,13 @@
-import React, {useMemo} from 'react';
+import React, {useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import './SearchFilmPage.scss'
 import HeaderBlock from "../../components/ui/HeaderBlock/HeaderBlock.jsx";
 import BigFilmCard from "../../components/ui/BigFilmCard/BigFilmCard.jsx";
 import BigFilmList from "../../components/SearchFilmPage/BigFilmList/BigFilmList.jsx";
 import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
 import UiButton from "../../components/ui/UiButton/UiButton.jsx";
+import {filmsApi} from "../../api/filmsApi.js";
+import {RouteContext} from "../../context/RoutesProvider.jsx";
+import {debounce} from "../../helpers/helpers.js";
 
 const film = {
     "id": 6706155,
@@ -62,7 +65,7 @@ const film = {
     "isSeries": false,
     "ticketsOnSale": false
 }
-const list = [
+const list3 = [
     {
         "id": 6793358,
         "name": "Субстанция. Идеал",
@@ -117,42 +120,58 @@ const list = [
         }
     },
     {
-        "id": 6706155,
+        "id": 5377804,
         "name": "Руки Вверх!",
-        "alternativeName": null,
-        "enName": null,
+        "alternativeName": "",
+        "enName": "",
         "type": "movie",
-        "typeNumber": 1,
         "year": 2024,
-        "description": "Из провинциального мальчишки, мечтающего впечатлить девушку робкими песнями о любви, Сергей Жуков становится одним из самых востребованных артистов страны и голосом целого поколения.",
+        "description": "Из провинциального мальчишки, мечтающего впечатлить девушку робкими песнями о любви, Сергей Жуков становится одним из самых востребованных артистов страны и голосом целого поколения.",
         "shortDescription": "Провинциальный музыкант-самоучка становится кумиром поколения. Байопик о легендарной поп-группе",
-        "status": null,
-        "rating": {
-            "kp": 7.51,
-            "imdb": 5.5,
-            "filmCritics": 0,
-            "russianFilmCritics": 0,
-            "await": null
-        },
-        "votes": {
-            "kp": 143707,
-            "imdb": 239,
-            "filmCritics": 0,
-            "russianFilmCritics": 0,
-            "await": 0
-        },
         "movieLength": 100,
+        "isSeries": false,
+        "ticketsOnSale": false,
         "totalSeriesLength": null,
         "seriesLength": null,
         "ratingMpaa": null,
         "ageRating": 18,
+        "top10": null,
+        "top250": null,
+        "typeNumber": 1,
+        "status": null,
+        "names": [
+            {
+                "name": "Руки вверх",
+                "language": "RU",
+                "type": "Russian title on kinopoisk"
+            }
+        ],
+        "externalId": {
+            "kpHD": "b248f958b8aa46ec8539682f54bc773d",
+            "tmdb": 1248954
+        },
+        "logo": null,
         "poster": {
-            "url": "https://image.openmoviedb.com/kinopoisk-images/10671298/e20865f8-159b-4e95-9bb7-1997884321f1/orig",
-            "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/10671298/e20865f8-159b-4e95-9bb7-1997884321f1/x1000"
+            "url": "https://image.openmoviedb.com/kinopoisk-images/4486362/9f7fb99b-619d-4fba-a7be-b2daf266ad0b/orig",
+            "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/4486362/9f7fb99b-619d-4fba-a7be-b2daf266ad0b/x1000"
         },
         "backdrop": {
-            "url": "https://image.openmoviedb.com/kinopoisk-ott-images/1648503/2a00000193b551b063a791d538ae4b178728/orig",
-            "previewUrl": "https://image.openmoviedb.com/kinopoisk-ott-images/1648503/2a00000193b551b063a791d538ae4b178728/x1000"
+            "url": "https://image.openmoviedb.com/kinopoisk-ott-images/1648503/2a00000191ef28797dbb94ab1e38bae2ceb6/orig",
+            "previewUrl": "https://image.openmoviedb.com/kinopoisk-ott-images/1648503/2a00000191ef28797dbb94ab1e38bae2ceb6/x1000"
+        },
+        "rating": {
+            "kp": 7.623,
+            "imdb": 5,
+            "filmCritics": 0,
+            "russianFilmCritics": 71.4286,
+            "await": null
+        },
+        "votes": {
+            "kp": 349237,
+            "imdb": 110,
+            "filmCritics": 0,
+            "russianFilmCritics": 7,
+            "await": 0
         },
         "genres": [
             {
@@ -167,11 +186,305 @@ const list = [
                 "name": "Россия"
             }
         ],
+        "releaseYears": []
+    },
+    {
+        "id": 6706155,
+        "name": "Руки Вверх!",
+        "alternativeName": "",
+        "enName": "",
+        "type": "movie",
+        "year": 2024,
+        "description": "Из провинциального мальчишки, мечтающего впечатлить девушку робкими песнями о любви, Сергей Жуков становится одним из самых востребованных артистов страны и голосом целого поколения.",
+        "shortDescription": "Провинциальный музыкант-самоучка становится кумиром поколения. Байопик о легендарной поп-группе",
+        "movieLength": 100,
+        "isSeries": false,
+        "ticketsOnSale": false,
+        "totalSeriesLength": null,
+        "seriesLength": null,
+        "ratingMpaa": null,
+        "ageRating": 18,
         "top10": null,
         "top250": null,
-        "isSeries": false,
-        "ticketsOnSale": false
+        "typeNumber": 1,
+        "status": null,
+        "names": [],
+        "externalId": {
+            "kpHD": "5cc7f56192f245ee909229a0d1bd7502",
+            "tmdb": 1248954
+        },
+        "logo": null,
+        "poster": {
+            "url": "https://image.openmoviedb.com/kinopoisk-images/10671298/e20865f8-159b-4e95-9bb7-1997884321f1/orig",
+            "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/10671298/e20865f8-159b-4e95-9bb7-1997884321f1/x1000"
+        },
+        "backdrop": {
+            "url": "https://image.openmoviedb.com/kinopoisk-ott-images/1648503/2a00000193b551b063a791d538ae4b178728/orig",
+            "previewUrl": "https://image.openmoviedb.com/kinopoisk-ott-images/1648503/2a00000193b551b063a791d538ae4b178728/x1000"
+        },
+        "rating": {
+            "kp": 7.51,
+            "imdb": 5.5,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": null
+        },
+        "votes": {
+            "kp": 143707,
+            "imdb": 239,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "genres": [
+            {
+                "name": "музыка"
+            },
+            {
+                "name": "биография"
+            }
+        ],
+        "countries": [
+            {
+                "name": "Россия"
+            }
+        ],
+        "releaseYears": []
     },
+    {
+        "id": 42141,
+        "name": "Руки вверх!",
+        "alternativeName": "",
+        "enName": "",
+        "type": "movie",
+        "year": 1981,
+        "description": "Злодей Шито-Крыто задумал превратить всех детей в лентяев, двоечников и проходимцев, чтобы с их помощью завоевать весь мир. Но лоботрясы и озорники вовремя спохватились — и операция под кодовым названием «Братцы-тунеядцы» с треском провалилась.",
+        "shortDescription": "Злодей намерен покорить мир, превратив людей в бездельников. Семейная комедия с блестящим актерским составом",
+        "movieLength": 67,
+        "isSeries": false,
+        "ticketsOnSale": false,
+        "totalSeriesLength": null,
+        "seriesLength": null,
+        "ratingMpaa": null,
+        "ageRating": 6,
+        "top10": null,
+        "top250": null,
+        "typeNumber": 1,
+        "status": null,
+        "names": [
+            {
+                "name": "Руки вверх!"
+            },
+            {
+                "name": "Ruki Vverkh!",
+                "language": "RU",
+                "type": "Translit"
+            }
+        ],
+        "externalId": {
+            "kpHD": "4c69821251a30af18e74f4ed343f537d",
+            "imdb": "tt0084612",
+            "tmdb": 470326
+        },
+        "logo": {
+            "url": null,
+            "previewUrl": null
+        },
+        "poster": {
+            "url": "https://image.openmoviedb.com/kinopoisk-images/1704946/b48a469d-8ed8-4dec-884e-cec2568af8d2/orig",
+            "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/1704946/b48a469d-8ed8-4dec-884e-cec2568af8d2/x1000"
+        },
+        "backdrop": {
+            "url": "https://image.openmoviedb.com/kinopoisk-ott-images/212840/2a00000163b2cb01200e4289a9dc3eeed241/orig",
+            "previewUrl": "https://image.openmoviedb.com/kinopoisk-ott-images/212840/2a00000163b2cb01200e4289a9dc3eeed241/x1000"
+        },
+        "rating": {
+            "kp": 6.216,
+            "imdb": 5.7,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": null
+        },
+        "votes": {
+            "kp": 1219,
+            "imdb": 52,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "genres": [
+            {
+                "name": "комедия"
+            },
+            {
+                "name": "семейный"
+            }
+        ],
+        "countries": [
+            {
+                "name": "СССР"
+            }
+        ],
+        "releaseYears": []
+    },
+    {
+        "id": 8942,
+        "name": "Руки вверх, или Грабители-неудачники",
+        "alternativeName": "The Curse of Inferno",
+        "enName": "",
+        "type": "movie",
+        "year": 1996,
+        "description": "Двое незадачливых грабителей банков после очередного ограбления так запутались в погонях, скрывании от полиции и шерифа, и выяснении отношений между собой, что решили вернуть деньги в банк...",
+        "shortDescription": "",
+        "movieLength": 83,
+        "isSeries": false,
+        "ticketsOnSale": false,
+        "totalSeriesLength": null,
+        "seriesLength": null,
+        "ratingMpaa": "r",
+        "ageRating": 16,
+        "top10": null,
+        "top250": null,
+        "typeNumber": 1,
+        "status": null,
+        "names": [
+            {
+                "name": "Руки вверх, или Грабители-неудачники"
+            },
+            {
+                "name": "The Curse of Inferno"
+            }
+        ],
+        "externalId": {
+            "kpHD": null,
+            "tmdb": 92943
+        },
+        "logo": {
+            "url": null
+        },
+        "poster": {
+            "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/3e20796f-3d10-4eec-8df2-adbb78750249/orig",
+            "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/1946459/3e20796f-3d10-4eec-8df2-adbb78750249/x1000"
+        },
+        "backdrop": {
+            "url": null,
+            "previewUrl": null
+        },
+        "rating": {
+            "kp": 5.737,
+            "imdb": 4.2,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": null
+        },
+        "votes": {
+            "kp": 115,
+            "imdb": 578,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "genres": [
+            {
+                "name": "криминал"
+            },
+            {
+                "name": "комедия"
+            }
+        ],
+        "countries": [
+            {
+                "name": "США"
+            }
+        ],
+        "releaseYears": []
+    },
+    {
+        "id": 3056,
+        "name": "Руки вверх",
+        "alternativeName": "Rece do góry",
+        "enName": "",
+        "type": "movie",
+        "year": 1981,
+        "description": "",
+        "shortDescription": "",
+        "movieLength": 76,
+        "isSeries": false,
+        "ticketsOnSale": false,
+        "totalSeriesLength": null,
+        "seriesLength": null,
+        "ratingMpaa": null,
+        "ageRating": null,
+        "top10": null,
+        "top250": null,
+        "typeNumber": 1,
+        "status": null,
+        "names": [
+            {
+                "name": "Руки вверх"
+            },
+            {
+                "name": "Rece do góry"
+            },
+            {
+                "name": "Haut les mains !",
+                "language": "FR",
+                "type": "TV"
+            },
+            {
+                "name": "Psila ta heria!",
+                "language": "GR",
+                "type": null
+            },
+            {
+                "name": "Mani in alto!",
+                "language": "IT",
+                "type": null
+            }
+        ],
+        "externalId": {
+            "imdb": "tt0062181",
+            "tmdb": 154399,
+            "kpHD": null
+        },
+        "logo": {
+            "url": null
+        },
+        "poster": {
+            "url": "https://image.openmoviedb.com/kinopoisk-images/1629390/cda51770-dc71-4def-8858-505452ddfc84/orig",
+            "previewUrl": "https://image.openmoviedb.com/kinopoisk-images/1629390/cda51770-dc71-4def-8858-505452ddfc84/x1000"
+        },
+        "backdrop": {
+            "url": null,
+            "previewUrl": null
+        },
+        "rating": {
+            "kp": 6,
+            "imdb": 6.5,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": null
+        },
+        "votes": {
+            "kp": 110,
+            "imdb": 462,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "genres": [
+            {
+                "name": "драма"
+            }
+        ],
+        "countries": [
+            {
+                "name": "Польша"
+            }
+        ],
+        "releaseYears": []
+    },
+
     {
         "id": 6591869,
         "name": "Астрал. Могильный ритуал",
@@ -623,15 +936,45 @@ const list = [
 ]
 const SearchFilmPage = () => {
 
+    // const [data, error, isLoading] = await filmsApi.getFilmsByFilters({page: 1, limit: 4})
+    const {searchName} = useContext(RouteContext)
+    const [films, setFilms] = useState([])
+    const [isLoading, setLoading] = useState(true)
+    const getFilmsBySearchName = useCallback(async (searchName) => {
+        setLoading(true)
+        const [data, error, isLoading] = await filmsApi.getFilmsBySearchName({
+            page: 1,
+            limit: 6,
+            query: searchName,
+        })
+        setFilms(data)
+        setLoading(isLoading)
+    }, [])
+
+    const debouncedGetFilmsBySearchName = useMemo(() =>
+        debounce(getFilmsBySearchName, 1000), [getFilmsBySearchName])
+    const {changeRoute} = useContext(RouteContext)
+    useEffect(() => {
+        // if (searchName) {
+        //     console.log(searchName, 'SEARCG WATCHER')
+        debouncedGetFilmsBySearchName(searchName)
+        // }
+    }, [searchName]);
+
+
     return (
         <div className="search-film-page">
             <HeaderBlock/>
             <div className="search-film-page__wrapper">
                 <div className="search-film-page__routes">
-                    <UiButton type="arrow-left" text="Назад"/>
+                    <UiButton onClick={() => changeRoute('/')} type="arrow-left" text="Назад"/>
                 </div>
                 <div className="search-film-page__title">Результаты поиска</div>
-                <BigFilmList list={list}/>
+                {isLoading ? (
+                    <div>Загрузка фильмов...</div>
+                ) : (
+                    <BigFilmList list={films}/>
+                )}
             </div>
             <FooterBlock/>
         </div>

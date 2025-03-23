@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import HeaderBlock from "../../components/ui/HeaderBlock/HeaderBlock.jsx";
 import './MainPage.scss'
 import PosterFilm from "../../components/ui/PosterFilm/PosterFilm.jsx";
@@ -10,6 +10,7 @@ import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
 import {filmsApi} from "../../api/filmsApi.js";
 import SelectGroup from "../../components/MainPage/SelectGroup/SelectGroup.jsx";
 import {useSelectData} from "../../hooks/useSelectData.js";
+import {RouteContext} from "../../context/RoutesProvider.jsx";
 
 const {title, filmName, description, buttonText} = {
     title: 'УЖЕ В КИНО',

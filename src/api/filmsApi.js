@@ -54,6 +54,15 @@ export const filmsApi = {
         )
         return [data, error, isLoading]
     },
+    async getFilmsBySearchName(filters) {
+        const [data, error, isLoading] = await useFetch(
+            API_PATHS.MOVIE_SEARCH,
+            {
+                ...filters,
+            }
+        )
+        return [data, error, isLoading]
+    },
     async getFilmById(id) {
         const url = `${API_PATHS.MOVIE}/${id}`
         const [data, error, isLoading] =
