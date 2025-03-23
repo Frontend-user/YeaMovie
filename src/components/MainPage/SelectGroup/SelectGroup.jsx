@@ -3,7 +3,7 @@ import UiSelect from "../../ui/UiSelect/UiSelect.jsx";
 import UiSort from "../../ui/UiSort/UiSort.jsx";
 import {useSelectData} from "../../../hooks/useSelectData.js";
 
-const SelectGroup = ({changeFilter,filters}) => {
+const SelectGroup = ({changeFilter, filters}) => {
 
 
         const {
@@ -17,7 +17,11 @@ const SelectGroup = ({changeFilter,filters}) => {
 
         const handleFilterFields = (id, item, setItem, fieldKey) => {
             const name = selectItem(id, item, setItem)
-            changeFilter({[fieldKey]: name})
+            if (fieldKey === 'typeNumber') {
+                changeFilter({[fieldKey]: id})
+            } else {
+                changeFilter({[fieldKey]: name})
+            }
         }
 
         useEffect(() => {
@@ -41,7 +45,7 @@ const SelectGroup = ({changeFilter,filters}) => {
                     list={rating}/>
                 <UiSelect
                     className="main-page__ui-select"
-                    select={(id) => handleFilterFields(id, filmTypes, setFilmTypes, 'filmTypes')}
+                    select={(id) => handleFilterFields(id, filmTypes, setFilmTypes, 'typeNumber')}
                     list={filmTypes}/>
                 <UiSort className="main-page__sort-wrap "/>
             </>

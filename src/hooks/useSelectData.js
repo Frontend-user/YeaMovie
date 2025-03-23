@@ -22,12 +22,12 @@ export function useSelectData() {
         {
             id: 1,
             name: 'драма',
-            selected: true
+            selected: false
         },
         {
             id: 2,
             name: 'комедия',
-            selected: false
+            selected: true
         },
         {
             id: 3,
@@ -66,7 +66,7 @@ export function useSelectData() {
         {
             id: 1,
             name: 2020,
-            selected: true
+            selected: false
         },
         {
             id: 2,
@@ -77,8 +77,19 @@ export function useSelectData() {
             id: 3,
             name: 2022,
             selected: false
-        }, {
+        },
+        {
             id: 4,
+            name: 2023,
+            selected: false
+        },
+        {
+            id: 5,
+            name: 2024,
+            selected: true
+        },
+        {
+            id: 6,
             name: 2025,
             selected: false
         },
@@ -88,12 +99,12 @@ export function useSelectData() {
         {
             id: 1,
             name: 6,
-            selected: true
+            selected: false
         },
         {
             id: 2,
             name: 7,
-            selected: false
+            selected: true
         },
         {
             id: 3,
@@ -109,22 +120,22 @@ export function useSelectData() {
     const [filmTypes, setFilmTypes] = useState([
         {
             id: 1,
-            name: 'Сериалы',
+            name: 'Фильмы',
             selected: true
         },
         {
             id: 2,
-            name: 'Фильмы',
+            name: 'Сериалы',
             selected: false
         },
         {
             id: 3,
-            name: 'Аниме',
+            name: 'Мультики',
             selected: false
         },
         {
             id: 4,
-            name: 'Мультики',
+            name: 'Аниме',
             selected: false
         },
 
@@ -146,6 +157,7 @@ export function useSelectData() {
         setSelectList(list)
         return selectedName
     }
+
     const [testItem, setTestItem] = useState({
         'first.sfdsdf': '1',
         'sec.fsdfdssdf': '2',
@@ -155,7 +167,7 @@ export function useSelectData() {
         'countries.name': 'Россия',
         'year': 2024,
         'rating.imdb': '7-10',
-        'isSeries': false
+        typeNumber: 1
     })
 
     return {
