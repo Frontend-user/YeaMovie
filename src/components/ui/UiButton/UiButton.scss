@@ -11,13 +11,19 @@
   &:hover {
     cursor: pointer;
   }
-&__value {
-  background: var(--primary-dark-color);
-  color: var(--primary-light-color);
-  font-size: var(--primary-font-size);
-  font-weight: var(--primary-font-weight);
+  &__second {
+    color: var(--red-color);
+    background: var(--primary-light-color);
+    border: 1px solid var(--red-color);
+  }
+  &__value {
+    background: var(--primary-dark-color);
+    color: var(--primary-light-color);
+    font-size: var(--primary-font-size);
+    font-weight: var(--primary-font-weight);
 
-}
+  }
+
   &__arrow-right {
     position: relative;
     background: var(--bg-light-color);
@@ -29,7 +35,7 @@
       right: -17px;
       top: 14px;
       position: absolute;
-      content:"";
+      content: "";
       width: 40px;
       height: 40px;
       background-image: url("../../../assets/icons/arrow-right-icon.svg");

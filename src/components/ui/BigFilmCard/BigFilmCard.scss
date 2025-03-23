@@ -1,0 +1,61 @@
+.big-film-card {
+  &__inner {
+    display: flex;
+  }
+  &__image-wrap {
+    max-height: 600px;
+  }
+
+  &__image {
+    margin-right: 73px;
+    border-radius: 10px;
+    width: auto;
+    height: 100%;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+  }
+
+  &__name {
+    font-size: 80px;
+    font-weight: 700;
+    max-width:  316px;
+    color: var(--primary-dark-color);
+  }
+
+  &__ratings-wrap {
+    color: var(--yellow-color);
+    font-size: var(--primary-font-size);
+    font-weight: var(--primary-font-weight);
+  }
+
+  &__rating-kp {
+  }
+
+  &__rating-imdb {
+  }
+
+  &__description {
+    font-size: var(--primary-font-size);
+    font-weight: var(--secondary-font-weight);
+    margin-bottom: 30px;
+  }
+&__chars-wrap {
+  margin-bottom: auto;
+}
+  &__buttons-wrap {
+    display: flex;
+    button {
+      margin-right: 20px;
+    }
+  }
+}
