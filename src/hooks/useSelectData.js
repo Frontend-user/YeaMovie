@@ -157,7 +157,6 @@ export function useSelectData() {
         'rating.imdb': '7-10',
         'isSeries': false
     })
-    console.log(filters, 'filters in useSelecData');
 
     return {
         genres, setGenres,

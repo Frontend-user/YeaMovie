@@ -1,33 +1,36 @@
-import {useEffect, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import AboutPage from "./pages/AboutPage/AboutPage.jsx";
 import MainPage from "./pages/MainPage/MainPage.jsx";
 import TestPage from "./components/TestPage/TestPage.jsx";
 import SearchFilmPage from "./pages/SearchFilmPage/SearchFilmPage.jsx";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+import {ThemeContext, ThemeProvider} from "./context/ThemeProvider.jsx";
+import {RouteContext} from "./context/RoutesProvider.jsx";
 
 function App() {
-    const apiUrl = "https://api.kinopoisk.dev/v1.4"
-    const token = 'AZ211ST-KDQ4F97-N7W6X1J-BB7ESSH'
-    const [count, setCount] = useState(0)
+    const {page, changeRoute,selectedFilmId} = useContext(RouteContext)
+
     useEffect(() => {
-        // fetch(`${apiUrl}/movie`, {
-        //     headers: {
-        //         'X-API-KEY': token
-        //     }
-        // })
-        //     .then(r => r.json())
-        //     .then(r => {
-        //         console.log(r, 'rr')
-        //     })
+        // const arr = route.split('/')
+        // if (arr[1] === 'about-page') {
+        //     setSelectedFilmId(+arr[2])
+        //     setPage('/' +
+        //         arr[1])
+        // }
+        // console.log(selectedFilmId,'selectedFilmId')
     }, []);
     return (
         <>
-            {/*<SearchFilmPage/>*/}
-            <AboutPage/>
-            {/*<MainPage/>*/}
-            {/*<TestPage/>*/}
+            {page}
+            {page === '/'
+                ? <MainPage/>
+                : page === '/about-page'
+                    ? <AboutPage filmId={selectedFilmId}/>
+                    : page === '/search-film-page'
+                        ? <SearchFilmPage/>
+                        : <div>NOT FOUNT PAGE
+                            <button onClick={() => changeRoute('/')}>GO TO MAINPAGE </button>
+                        </div>
+            }
         </>
     )
 }

@@ -3,7 +3,6 @@ import {useEffect} from "react";
 
 const CharsList = ({list}) => {
     useEffect(() => {
-        console.log(list, 'list')
     }, [list]);
     return (
         <div className="chars-list">

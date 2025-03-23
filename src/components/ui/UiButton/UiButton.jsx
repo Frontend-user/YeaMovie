@@ -1,9 +1,10 @@
 import './UiButton.scss'
 
-const UiButton = ({text, type = "default"}) => {
+const UiButton = ({onClick, text, type = "default"}) => {
     return (
         <button
-            className={`ui-button ui-button__${type}`} disabled>
+            onClick={onClick}
+            className={`ui-button ui-button__${type}`} >
             {text}
         </button>
     );

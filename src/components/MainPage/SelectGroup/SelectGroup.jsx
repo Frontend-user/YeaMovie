@@ -21,7 +21,6 @@ const SelectGroup = ({changeFilter,filters}) => {
         }
 
         useEffect(() => {
-            console.log('SELECTGROP',filters)
         }, [filters]);
         return (
             <>
