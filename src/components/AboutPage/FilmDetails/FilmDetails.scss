@@ -10,10 +10,11 @@
 
   &__img-wrap {
     margin-right: 37px;
+    margin-bottom: 30px;
   }
 
   &__image {
-  max-height: 650px;
+    max-height: 650px;
   }
 
   &__right {
@@ -28,17 +29,25 @@
     //display: grid;
     //grid-column-gap: 10px;
     //grid-template-columns: 1fr 200px 1fr;
-    align-items: center;
+    //align-items: center;
     //justify-content: space-between;
   }
-&__button {
-  font-size: 18px;
-}
+
+  &__button {
+    font-size: 18px;
+    //margin-left: auto;
+  }
+
   &__name {
     font-size: 80px;
     font-weight: 700;
-    max-width:  316px;
+    max-width: 316px;
     color: var(--primary-dark-color);
+    margin-right: auto;
+    &_small {
+      max-width: 400px;
+      font-size: 35px;
+    }
   }
 
   &__rating-wrap {
@@ -68,7 +77,7 @@
   &__title {
     font-size: 40px;
     font-weight: 700;
-    color:var(--primary-dark-color);
+    color: var(--primary-dark-color);
     margin-bottom: 20px;
   }
 }

@@ -20,7 +20,7 @@ function App() {
     }, []);
     return (
         <>
-            {page}
+            {/*{page}*/}
             {page === '/'
                 ? <MainPage/>
                 : page === '/about-page'

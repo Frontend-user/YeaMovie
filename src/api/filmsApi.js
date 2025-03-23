@@ -53,5 +53,11 @@ export const filmsApi = {
             }
         )
         return [data, error, isLoading]
+    },
+    async getFilmById(id) {
+        const url = `${API_PATHS.MOVIE}/${id}`
+        const [data, error, isLoading] =
+            await useFetch(url,{},false)
+        return [data, error, isLoading]
     }
 }

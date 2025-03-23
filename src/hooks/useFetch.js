@@ -2,11 +2,14 @@ import {API_TOKEN, API_TOKEN2, API_URL} from "../helpers/constants.js";
 import {formatRequestParams} from "../helpers/helpers.js";
 
 
-export function useFetch(path, params) {
+export function useFetch(path, params, needToFormatParams = true) {
     let data = {};
     let error = null;
     let isLoading = true;
-    const formattedParams = formatRequestParams(params)
+    let formattedParams = ''
+    if (needToFormatParams) {
+        formattedParams = formatRequestParams(params)
+    }
     const url = `${API_URL}/${path}${formattedParams}`
     const cb = async () => {
         try {
@@ -15,10 +18,14 @@ export function useFetch(path, params) {
                     'X-API-KEY': API_TOKEN
                 },
             })
-            const data = await response.json()
+            const parsedResponse = await response.json()
             isLoading = false
-            console.log(data.docs, 'data')
-            return [data.docs, error, isLoading]
+            if (parsedResponse.docs) {
+                data = parsedResponse.docs
+            } else {
+                data = parsedResponse
+            }
+            return [data, error, isLoading]
         } catch (e) {
             error = e.message
             return [data, error, isLoading]

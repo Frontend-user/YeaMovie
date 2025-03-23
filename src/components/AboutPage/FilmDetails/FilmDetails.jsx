@@ -2,6 +2,7 @@ import './FilmDetails.scss'
 import UiButton from "../../ui/UiButton/UiButton.jsx";
 import CharsList from "../../ui/CharsList/CharsList.jsx";
 import {useEffect, useLayoutEffect, useState} from "react";
+import WatchLinks from "../WatchLinks/WatchLinks.jsx";
 
 const FilmDetails =
     ({
@@ -12,10 +13,10 @@ const FilmDetails =
          description,
          genre,
          country,
-         year,
+         year, watchLinks,
          film
      }) => {
-        const [chars,setChars] = useState([
+        const [chars, setChars] = useState([
             {'Жанр:': genre},
             {'Страна:': country},
             {'Год:': year},
@@ -31,12 +32,17 @@ const FilmDetails =
                         <div className="film-details__img-wrap">
                             <img src={image} alt="" className="film-details__image"/>
                         </div>
+                        {watchLinks && watchLinks.length ?
+                            (<WatchLinks list={watchLinks}/>)
+                            : ''
+                        }
 
                     </div>
 
                     <div className="film-details__right">
                         <div className="film-details__header">
-                            <div className="film-details__name">{name}</div>
+                            <div className={`film-details__name 
+                            ${name.length > 10 ? 'film-details__name_small' : 'film-details__name'}`}>{name}</div>
                             <div>
                                 <UiButton className="film-details__button" text="В избранное"/>
 

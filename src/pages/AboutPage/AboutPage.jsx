@@ -6,11 +6,11 @@ import './AboutPage.scss'
 import UiButton from "../../components/ui/UiButton/UiButton.jsx";
 import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
 import {RouteContext} from "../../context/RoutesProvider.jsx";
+import {filmsApi} from "../../api/filmsApi.js";
 
 const AboutPage = ({filmId}) => {
     const {changeRoute} = useContext(RouteContext)
-
-    const film = {
+    const film2 = {
         "id": 6706155,
         "externalId": {
             "kpHD": "5cc7f56192f245ee909229a0d1bd7502",
@@ -696,10 +696,23 @@ const AboutPage = ({filmId}) => {
         "studioParsed": true,
         "keywordsParsed": true
     }
+    const [isLoading, setIsLoading] = useState(true)
+    const [film, setFilm] = useState({})
     useEffect(() => {
-        // console.log(filmId, 'aboutpage filmId')
-    }, [filmId,]);
+        const getFilm = async () => {
+            console.log(filmId, 'filmId')
+            const [data, error, isLoading] = await filmsApi.getFilmById(filmId)
+            setFilm(data)
+            setIsLoading(isLoading)
+            console.log('FILM LOADED')
+        }
+        getFilm()
+// setFilm(film2)
+//         setIsLoading(false)
+    }, [filmId]);
     const formatGenre = useMemo(() => {
+        if (isLoading) return
+        if (!film.genres) return ''
         let result = ''
         film.genres.forEach((item, idx) => {
             result += item.name
@@ -708,26 +721,30 @@ const AboutPage = ({filmId}) => {
             }
         })
         return result
-    }, [])
+    }, [film])
     return (
         <div className="about-page">
-            {filmId}
             <HeaderBlock/>
             <div className="about-page__wrapper">
                 <div className="about-page__routes">
                     <UiButton onClick={() => changeRoute('/')} type="arrow-left" text="Главная"/>
                     <UiButton onClick={() => changeRoute('/')} type="arrow-left" text="Назад"/>
                 </div>
-                <FilmDetails
-                    image={film.poster.url}
-                    name={film.name}
-                    ratingKp={film.rating.kp}
-                    ratingImdb={film.rating.imdb}
-                    description={film.description}
-                    genre={formatGenre}
-                    country={film.countries[0].name}
-                    year={film.year}
-                    film={film}/>
+                {isLoading ?
+                    (<div>Загрузка фильма...</div>)
+                    : (<FilmDetails
+                            image={film.poster.url}
+                            name={film.name}
+                            ratingKp={film.rating.kp}
+                            ratingImdb={film.rating.imdb}
+                            description={film.description}
+                            genre={formatGenre}
+                            country={film.countries[0].name}
+                            year={film.year}
+                            watchLinks={film?.watchability?.items}
+                            film={film}/>
+                    )
+                }
 
                 <div className="about-page__button-wrap">
                     <UiButton type="value" text="Кадры из фильма"/>
@@ -735,7 +752,7 @@ const AboutPage = ({filmId}) => {
                 <div className="about-page__arrow-button-wrap">
                     <UiButton type="arrow-right" text="Смотреть все"/>
                 </div>
-                {/*<ImagesGrid list={film.persons.map(item => (item.photo)).slice(0,6)}/>*/}
+                <ImagesGrid list={film?.persons?.length ? film.persons.map(item => (item.photo)).slice(0,6) : []}/>
             </div>
             <FooterBlock/>
 

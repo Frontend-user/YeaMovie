@@ -1,8 +1,8 @@
 export function formatRequestParams(options) {
+    if(options === {}) return ''
     let result = '?'
-    console.log(options,'oo')
     let entries = Object.entries(options)
-    console.log(entries,'eioo')
+    if (!entries.length) return ''
     for (let i = 0; i < entries.length; i++) {
         const [key, value] = entries[i]
         if (i + 1 === entries.length) {
