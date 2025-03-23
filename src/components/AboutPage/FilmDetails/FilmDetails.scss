@@ -1,0 +1,74 @@
+.film-details {
+  &__inner {
+    display: flex;
+    //gap: 100px;
+    width: 100%;
+  }
+
+  &__left {
+  }
+
+  &__img-wrap {
+    margin-right: 37px;
+  }
+
+  &__image {
+  max-height: 650px;
+  }
+
+  &__right {
+    width: 100%;
+  }
+
+  &__header {
+    width: 100%;
+    //background: red;
+    margin-bottom: 40px;
+    display: flex;
+    //display: grid;
+    //grid-column-gap: 10px;
+    //grid-template-columns: 1fr 200px 1fr;
+    align-items: center;
+    //justify-content: space-between;
+  }
+&__button {
+  font-size: 18px;
+}
+  &__name {
+    font-size: 80px;
+    font-weight: 700;
+    max-width:  316px;
+    color: var(--primary-dark-color);
+  }
+
+  &__rating-wrap {
+    margin-left: auto;
+  }
+
+  &__rating-kp {
+    color: var(--yellow-color);
+    font-size: var(--primary-font-size);
+    font-weight: var(--primary-font-weight);
+  }
+
+  &__rating-imdb {
+    color: var(--yellow-color);
+    font-size: var(--primary-font-size);
+    font-weight: var(--primary-font-weight);
+  }
+
+  &__description {
+    max-width: 80%;
+    margin-bottom: 50px;
+  }
+
+  &__info {
+  }
+
+  &__title {
+    font-size: 40px;
+    font-weight: 700;
+    color:var(--primary-dark-color);
+    margin-bottom: 20px;
+  }
+}

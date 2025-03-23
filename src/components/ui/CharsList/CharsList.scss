@@ -1,0 +1,29 @@
+.chars-list {
+  &__inner {
+    //display: flex;
+  }
+
+  &__labels {
+    margin-right: 156px;
+    min-width: 150px;
+  }
+&__item {
+  display: flex;
+}
+  &__label {
+    font-size: var(--primary-font-size);
+    font-weight: var(--secondary-font-weight);
+    margin-bottom: 20px;
+    color: var(--text-grey-color);
+  }
+
+  &__values {
+  }
+
+  &__value {
+    font-size: var(--primary-font-size);
+    color: var(--text-grey-color);
+    font-weight: var(--secondary-font-weight);
+    margin-bottom: 20px;
+  }
+}

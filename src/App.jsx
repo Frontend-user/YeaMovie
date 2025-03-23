@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import AboutFilm from "./pages/AboutFilm/AboutFilm.jsx";
+import AboutPage from "./pages/AboutPage/AboutPage.jsx";
 import MainPage from "./pages/MainPage/MainPage.jsx";
 import TestPage from "./components/TestPage/TestPage.jsx";
 // import reactLogo from './assets/react.svg'
@@ -23,8 +23,9 @@ function App() {
     }, []);
     return (
         <>
-            <MainPage/>
-            <TestPage/>
+            <AboutPage/>
+            {/*<MainPage/>*/}
+            {/*<TestPage/>*/}
         </>
     )
 }

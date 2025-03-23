@@ -1,0 +1,21 @@
+.about-page {
+  &__wrapper {
+    margin: 0 auto;
+    margin-top: 60px;
+    max-width: 1360px;
+    //background: green;
+  }
+  &__button-wrap{
+    margin-top: 89px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__arrow-button-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 20px;
+  }
+}
