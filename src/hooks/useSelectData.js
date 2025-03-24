@@ -167,7 +167,9 @@ export function useSelectData() {
         'countries.name': 'Россия',
         'year': 2024,
         'rating.imdb': '7-10',
-        typeNumber: 1
+        typeNumber: 1,
+        sortField: 'audience.count',
+        sortType: 1
     })
 
     return {

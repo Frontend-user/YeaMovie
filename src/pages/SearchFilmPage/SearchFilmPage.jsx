@@ -8,6 +8,8 @@ import UiButton from "../../components/ui/UiButton/UiButton.jsx";
 import {filmsApi} from "../../api/filmsApi.js";
 import {RouteContext} from "../../context/RoutesProvider.jsx";
 import {debounce} from "../../helpers/helpers.js";
+import UiLoading from "../../components/ui/UILoading/UiLoading.jsx";
+import NoResult from "../../components/ui/NoResult/NoResult.jsx";
 
 const film = {
     "id": 6706155,
@@ -971,8 +973,8 @@ const SearchFilmPage = () => {
                 </div>
                 <div className="search-film-page__title">Результаты поиска</div>
                 {isLoading ? (
-                    <div>Загрузка фильмов...</div>
-                ) : (
+                    <UiLoading/>
+                ) : !isLoading && !films.length ? <NoResult/> : (
                     <BigFilmList list={films}/>
                 )}
             </div>

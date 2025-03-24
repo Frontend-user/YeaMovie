@@ -3,7 +3,7 @@ import UiSelect from "../../ui/UiSelect/UiSelect.jsx";
 import UiSort from "../../ui/UiSort/UiSort.jsx";
 import {useSelectData} from "../../../hooks/useSelectData.js";
 
-const SelectGroup = ({changeFilter, filters}) => {
+const SelectGroup = ({changeFilter,sortToggle}) => {
 
 
         const {
@@ -45,7 +45,8 @@ const SelectGroup = ({changeFilter, filters}) => {
                     className="main-page__ui-select"
                     select={(id) => handleFilterFields(id, filmTypes, setFilmTypes, 'typeNumber')}
                     list={filmTypes}/>
-                <UiSort className="main-page__sort-wrap "/>
+                <UiSort onClick={sortToggle}
+                        className="main-page__sort-wrap "/>
             </>
         );
     }

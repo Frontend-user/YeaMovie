@@ -7,6 +7,7 @@ import UiButton from "../../components/ui/UiButton/UiButton.jsx";
 import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
 import {RouteContext} from "../../context/RoutesProvider.jsx";
 import {filmsApi} from "../../api/filmsApi.js";
+import UiLoading from "../../components/ui/UILoading/UiLoading.jsx";
 
 const AboutPage = ({filmId}) => {
     const {changeRoute} = useContext(RouteContext)
@@ -731,7 +732,7 @@ const AboutPage = ({filmId}) => {
                     <UiButton onClick={() => changeRoute('/')} type="arrow-left" text="Назад"/>
                 </div>
                 {isLoading ?
-                    (<div>Загрузка фильма...</div>)
+                    (<UiLoading/>)
                     : (<FilmDetails
                             image={film.poster.url}
                             name={film.name}
@@ -752,7 +753,7 @@ const AboutPage = ({filmId}) => {
                 <div className="about-page__arrow-button-wrap">
                     <UiButton type="arrow-right" text="Смотреть все"/>
                 </div>
-                <ImagesGrid list={film?.persons?.length ? film.persons.map(item => (item.photo)).slice(0,6) : []}/>
+                <ImagesGrid list={film?.persons?.length ? film.persons.map(item => (item.photo)).slice(0, 6) : []}/>
             </div>
             <FooterBlock/>
 

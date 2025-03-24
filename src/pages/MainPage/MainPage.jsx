@@ -61,7 +61,7 @@ const MainPage = ({}) => {
 
         useEffect(() => {
                 const get = async () => {
-                    setFilmsListLoading(true)
+                    setFiltersFilmListLoading(true)
                     const [data, error, isLoading] = await filmsApi.getFilmsByFilters({
                         page: 1,
                         limit: 4,
@@ -74,7 +74,9 @@ const MainPage = ({}) => {
                 get()
             }, [filters]
         )
-
+        const sortToggle = () => {
+            setFilters(pr => ({...pr, sortType: pr.sortType === 1 ? -1 : 1}));
+        }
         const changeFilter = (updatedField) => {
             setFilters(pr => ({...pr, ...updatedField}));
         }
@@ -116,7 +118,7 @@ const MainPage = ({}) => {
 
                         </div>
                         <div className="main-page__selects-wrapper">
-                            <SelectGroup filters={filters} changeFilter={(v) => changeFilter(v)}/>
+                            <SelectGroup sortToggle={sortToggle} filters={filters} changeFilter={(v) => changeFilter(v)}/>
                         </div>
                         <div className="main-page__ui-button-arrow-right-wrap">
                             <UiButton text='Смотреть все' type="arrow-right"/>
