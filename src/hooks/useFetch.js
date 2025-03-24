@@ -30,11 +30,9 @@ export function useFetch(path, params, needToFormatParams = true) {
             } else {
                 data = parsedResponse
             }
-            console.log('ALO1')
             return [data, error, isLoading, paginateInfo]
         } catch (e) {
             error = e.message
-            console.log(e)
             return [data, error, isLoading]
 
         }

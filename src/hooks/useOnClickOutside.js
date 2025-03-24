@@ -6,7 +6,6 @@ export const useOnClickOutside = (el, cb) => {
             // if (!e.target.contains(el.current)) {
             if (!el.current.contains(e.target)) {
                 cb();
-                console.log('CB')
             }
         };
 

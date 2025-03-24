@@ -12,7 +12,6 @@ export function formatRequestParams(options) {
 
         }
     }
-    console.log(result)
     return result
 }
 

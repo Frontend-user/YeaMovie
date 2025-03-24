@@ -42,17 +42,14 @@ const scssTemplate = `.${folderName} {
 // Создаём папку
 if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath, { recursive: true });
-    console.log(`✅ Папка создана: ${folderPath}`);
 }
 
 // Создаём .tsx файл
 if (!fs.existsSync(tsxFilePath)) {
     fs.writeFileSync(tsxFilePath, tsxTemplate);
-    console.log(`✅ Файл создан: ${tsxFilePath}`);
 }
 
 // Создаём .scss файл
 if (!fs.existsSync(scssFilePath)) {
     fs.writeFileSync(scssFilePath, scssTemplate);
-    console.log(`✅ Файл создан: ${scssFilePath}`);
 }

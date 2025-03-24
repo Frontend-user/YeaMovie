@@ -90,7 +90,6 @@ const MainPage = ({}) => {
         }
 
         function nextPage() {
-            console.log('PREVE')
             setFilters(pr => ({...pr, page: pr.page + 1}));
 
         }

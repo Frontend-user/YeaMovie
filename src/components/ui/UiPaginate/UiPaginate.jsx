@@ -17,7 +17,6 @@ const UiPaginate = ({
     }
 
     const handleNextPage = () => {
-        console.log(page, pages, 'pp')
         if (page + 1 <= pages) {
             nextPage()
         }
