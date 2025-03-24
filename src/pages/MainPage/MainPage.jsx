@@ -58,7 +58,7 @@ const MainPage = ({}) => {
                 }
             }
 
-            // getData()
+            getData()
         }, [filmCategories]);
 
         useEffect(() => {
