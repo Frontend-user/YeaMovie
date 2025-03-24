@@ -24,8 +24,6 @@ const SelectGroup = ({changeFilter, filters}) => {
             }
         }
 
-        useEffect(() => {
-        }, [filters]);
         return (
             <>
                 <UiSelect className="main-page__ui-select"

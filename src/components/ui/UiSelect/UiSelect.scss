@@ -1,13 +1,14 @@
 .ui-select {
-  width: 148px;
+  width: 178px;
+
   height: 39px;
   outline: none;
   border-radius: 60px;
   border: 1px solid var(--secondary-dark-color);
   position: relative;
-
     &__inner{
       position: absolute;
+      background: #fff;
       top: 0;
       left: 0;
     }
@@ -16,7 +17,7 @@
   }
   &__inner-is-open {
 
-    width: 148px;
+    width: 178px;
     //top: 0;
     font-size: var(--secondary-font-size);
     font-weight: var(--secondary-font-weight);

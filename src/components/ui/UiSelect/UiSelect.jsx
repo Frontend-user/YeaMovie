@@ -1,16 +1,18 @@
 import './UiSelect.scss'
-import {useState} from "react";
+import {memo, useEffect, useRef, useState} from "react";
 import selectIcon from '../../../assets/icons/select-down-icon.svg'
+import {useOnClickOutside} from "../../../hooks/useOnClickOutside.js";
 
-const UiSelect = ({list, select, className}) => {
+const UiSelect = memo(function UiSelect({list, select, className}) {
     const [isOpen, toggle] = useState(false)
-
+    const uiSelect = useRef(null)
     const selectItem = (item) => {
         select(item)
         toggle()
     }
+    useOnClickOutside(uiSelect, toggle)
     return (
-        <div className={`${className} ui-select ${isOpen ? 'ui-select__is-open' : ''}`}>
+        <div ref={uiSelect} className={`${className} ui-select ${isOpen ? 'ui-select__is-open' : ''}`}>
             <div className={`ui-select__inner ${isOpen ? 'ui-select__inner-is-open' : ''}`}>
                 <div className="ui-select__show-field"
                      onClick={() => toggle(pr => !pr)}
@@ -28,6 +30,7 @@ const UiSelect = ({list, select, className}) => {
             </div>
         </div>
     );
-};
+})
+
 
 export default UiSelect;

@@ -56,8 +56,8 @@ const MainPage = ({}) => {
                 }
             }
 
-            // getData()
-        }, []);
+            getData()
+        }, [filmCategories]);
 
         useEffect(() => {
                 const get = async () => {
