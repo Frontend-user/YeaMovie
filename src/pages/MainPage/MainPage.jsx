@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {use, useContext, useEffect, useState} from 'react';
 import HeaderBlock from "../../components/ui/HeaderBlock/HeaderBlock.jsx";
 import './MainPage.scss'
 import PosterFilm from "../../components/ui/PosterFilm/PosterFilm.jsx";
@@ -12,6 +12,7 @@ import SelectGroup from "../../components/MainPage/SelectGroup/SelectGroup.jsx";
 import {useSelectData} from "../../hooks/useSelectData.js";
 import {RouteContext} from "../../context/RoutesProvider.jsx";
 import UiLoading from "../../components/ui/UILoading/UiLoading.jsx";
+import UiPaginate from "../../components/ui/UiPaginate/UiPaginate.jsx";
 
 const {title, filmName, description, buttonText} = {
     title: 'УЖЕ В КИНО',
@@ -33,7 +34,12 @@ const MainPage = ({}) => {
         const [filmsListLoading, setFilmsListLoading] = useState(true)
         const [filtersFilmListLoading, setFiltersFilmListLoading] = useState(true)
         const [filtersFilmList, setFiltersFilmList] = useState([])
-
+        const [paginateInfo, setPaginateInfo] = useState({
+            total: 0,
+            limit: 8,
+            page: 1,
+            pages: 0,
+        })
         useEffect(() => {
             // setFilmsList()
             // return
@@ -56,18 +62,19 @@ const MainPage = ({}) => {
                 }
             }
 
-            getData()
+            // getData()
         }, [filmCategories]);
 
         useEffect(() => {
                 const get = async () => {
                     setFiltersFilmListLoading(true)
-                    const [data, error, isLoading] = await filmsApi.getFilmsByFilters({
+                    const [data, error, isLoading, paginateInfo] = await filmsApi.getFilmsByFilters({
                         page: 1,
                         limit: 4,
                         ...filters
                     })
                     setFiltersFilmList(data)
+                    setPaginateInfo(paginateInfo)
                     setFiltersFilmListLoading(isLoading)
                 }
 
@@ -80,6 +87,19 @@ const MainPage = ({}) => {
         const changeFilter = (updatedField) => {
             setFilters(pr => ({...pr, ...updatedField}));
         }
+
+        function    prevPage() {
+            console.log('PREVE')
+            setFilters(pr => ({...pr, page: pr.page - 1}));
+
+        }
+
+        function nextPage() {
+            console.log('PREVE')
+            setFilters(pr => ({...pr, page: pr.page + 1}));
+
+        }
+
         return (
             <div className="main-page">
                 <HeaderBlock/>
@@ -125,8 +145,35 @@ const MainPage = ({}) => {
                         </div>
                         <div className="main-page__film-list-wrapper">
                             {filtersFilmListLoading ?
-                                <UiLoading/> :
-                                <FilmList list={filtersFilmList}/>
+                                <>
+                                    {/*<UiPaginate prevPage={() => console.log('s')} nextage={() => console.log('s')}*/}
+                                    {/*            page={filters.page}/>*/}
+                                    <UiPaginate
+                                        onClick
+                                        total={paginateInfo.total}
+                                        page={filters.page}
+                                        pages={filters.pages}
+                                        limit={filters.limit}
+                                        prevPage={() => prevPage()}
+                                        nextPage={() => nextPage()}
+
+                                    />
+                                    <UiLoading/>
+                                </>
+                                :
+                                <>
+                                    <FilmList list={filtersFilmList}/>
+                                    <UiPaginate
+                                        onClick
+                                        total={paginateInfo.total}
+                                        page={paginateInfo.page}
+                                        pages={paginateInfo.pages}
+                                        limit={paginateInfo.limit}
+                                        prevPage={prevPage}
+                                        nextPage={nextPage}
+
+                                    />
+                                </>
                             }
                         </div>
                     </div>

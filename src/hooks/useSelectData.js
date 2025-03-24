@@ -163,6 +163,8 @@ export function useSelectData() {
         'sec.fsdfdssdf': '2',
     })
     const [filters, setFilters] = useState({
+        page: 1,
+        limit: 8,
         'genres.name': 'комедия',
         'countries.name': 'Россия',
         'year': 2024,

@@ -44,7 +44,7 @@ export const filmsApi = {
 
     },
     async getFilmsByFilters(filters) {
-        const [data, error, isLoading] = await useFetch(
+        const [data, error, isLoading,paginateInfo] = await useFetch(
             API_PATHS.MOVIE,
             {
                 page: 1,
@@ -52,7 +52,7 @@ export const filmsApi = {
                 ...filters
             }
         )
-        return [data, error, isLoading]
+        return [data, error, isLoading,paginateInfo]
     },
     async getFilmsBySearchName(filters) {
         const [data, error, isLoading] = await useFetch(

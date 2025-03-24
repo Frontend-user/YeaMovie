@@ -1,0 +1,30 @@
+.ui-paginate {
+  margin-top: 40px;
+  &__inner {
+    width:500px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__prev {
+    width: 200px;
+    cursor: pointer;
+    height: 60px;
+    border: none;
+  padding: 10px;
+  }
+
+  &__value {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__next {
+    cursor: pointer;
+    border: none;
+    width: 200px;
+    padding: 10px;
+    height: 60px;
+  }
+}
