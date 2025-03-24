@@ -1,5 +1,5 @@
 import './UiSelect.scss'
-import {memo, useEffect, useRef, useState} from "react";
+import {memo,  useRef, useState} from "react";
 import selectIcon from '../../../assets/icons/select-down-icon.svg'
 import {useOnClickOutside} from "../../../hooks/useOnClickOutside.js";
 

@@ -20,16 +20,10 @@ export function useFetch(path, params, needToFormatParams = true) {
                 },
             })
             const parsedResponse = await response.json()
-            // let [total,pages,limit,page] = parsedResponse.total
-            // let pages = parsedResponse.pages
             let {total, pages, limit, page} = parsedResponse
             const paginateInfo = {
                 total, pages, limit, page
             }
-            console.log(limit, 't')
-            // console.log(total,page,pages,'fffffff')
-            // console.log(parsedResponse,'pared')
-            // let pages = parsedResponse.pages
             isLoading = false
             if (parsedResponse.docs) {
                 data = parsedResponse.docs

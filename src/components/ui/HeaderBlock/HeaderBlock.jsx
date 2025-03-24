@@ -2,7 +2,7 @@ import './HeaderBlock.scss'
 import SearchInput from "../SearchInput/SearchInput.jsx";
 import './HeaderBlock.scss'
 import headerIcon from '../../../assets/icons/kinomonster-icon.svg'
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 import {RouteContext} from "../../../context/RoutesProvider.jsx";
 
 const HeaderBlock = () => {

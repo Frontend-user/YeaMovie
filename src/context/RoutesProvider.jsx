@@ -1,5 +1,4 @@
-import React, {createContext, useContext, useEffect, useState} from 'react';
-import {filmsApi} from "../api/filmsApi.js";
+import React, {createContext,  useEffect, useState} from 'react';
 
 export const RouteContext = createContext()
 const RoutesProvider = ({children}) => {
@@ -16,7 +15,6 @@ const RoutesProvider = ({children}) => {
             setPage(`/${arr[1]}`)
             const id = +arr[2]
             setSelectedFilmId(id)
-            // console.log(id, 'ISS')
         } else {
             setPage(route)
         }

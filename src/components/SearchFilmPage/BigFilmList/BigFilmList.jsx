@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import './BigFilmList.scss'
 import BigFilmCard from "../../ui/BigFilmCard/BigFilmCard.jsx";
 

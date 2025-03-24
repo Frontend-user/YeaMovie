@@ -20,8 +20,6 @@ const BigFilmCard = ({
         {'Жанр:': genre},
         {'Страна:': country},
         {'Год:': year},
-        // {'Жанр:': genre},
-        // {'Страна:': country},
     ])
     const {changeRoute} = useContext(RouteContext)
     return (

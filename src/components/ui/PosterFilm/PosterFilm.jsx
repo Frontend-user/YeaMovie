@@ -1,7 +1,5 @@
 import './PosterFilm.scss'
 import UiButton from "../UiButton/UiButton.jsx";
-import {useContext} from "react";
-import {RouteContext} from "../../../context/RoutesProvider.jsx";
 
 const PosterFilm = ({title, name, description, buttonText, image}) => {
 
@@ -16,7 +14,6 @@ const PosterFilm = ({title, name, description, buttonText, image}) => {
                         <UiButton text={buttonText}/>
                     </div>
                 </div>
-                {/*<div></div>*/}
                 <img src={image} alt="" className="poster-film__image"/>
             </div>
         </div>

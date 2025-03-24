@@ -1,4 +1,4 @@
-import React, {use, useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import HeaderBlock from "../../components/ui/HeaderBlock/HeaderBlock.jsx";
 import './MainPage.scss'
 import PosterFilm from "../../components/ui/PosterFilm/PosterFilm.jsx";
@@ -10,7 +10,6 @@ import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
 import {filmsApi} from "../../api/filmsApi.js";
 import SelectGroup from "../../components/MainPage/SelectGroup/SelectGroup.jsx";
 import {useSelectData} from "../../hooks/useSelectData.js";
-import {RouteContext} from "../../context/RoutesProvider.jsx";
 import UiLoading from "../../components/ui/UILoading/UiLoading.jsx";
 import UiPaginate from "../../components/ui/UiPaginate/UiPaginate.jsx";
 
@@ -41,9 +40,6 @@ const MainPage = ({}) => {
             pages: 0,
         })
         useEffect(() => {
-            // setFilmsList()
-            // return
-
             async function getData() {
                 setFilmsListLoading(true)
                 const findSelectedCategoryId = filmCategories.findIndex((item) => item.selected) + 1
@@ -88,7 +84,7 @@ const MainPage = ({}) => {
             setFilters(pr => ({...pr, ...updatedField}));
         }
 
-        function  prevPage() {
+        function prevPage() {
             setFilters(pr => ({...pr, page: pr.page - 1}));
 
         }
@@ -145,18 +141,6 @@ const MainPage = ({}) => {
                         <div className="main-page__film-list-wrapper">
                             {filtersFilmListLoading ?
                                 <>
-                                    {/*<UiPaginate prevPage={() => console.log('s')} nextage={() => console.log('s')}*/}
-                                    {/*            page={filters.page}/>*/}
-                                    <UiPaginate
-                                        onClick
-                                        total={paginateInfo.total}
-                                        page={filters.page}
-                                        pages={filters.pages}
-                                        limit={filters.limit}
-                                        prevPage={() => prevPage()}
-                                        nextPage={() => nextPage()}
-
-                                    />
                                     <UiLoading/>
                                 </>
                                 :

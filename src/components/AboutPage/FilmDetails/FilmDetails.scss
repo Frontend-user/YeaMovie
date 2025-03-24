@@ -1,7 +1,6 @@
 .film-details {
   &__inner {
     display: flex;
-    //gap: 100px;
     width: 100%;
   }
 
@@ -23,19 +22,12 @@
 
   &__header {
     width: 100%;
-    //background: red;
     margin-bottom: 40px;
     display: flex;
-    //display: grid;
-    //grid-column-gap: 10px;
-    //grid-template-columns: 1fr 200px 1fr;
-    //align-items: center;
-    //justify-content: space-between;
   }
 
   &__button {
     font-size: 18px;
-    //margin-left: auto;
   }
 
   &__name {

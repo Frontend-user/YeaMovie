@@ -1,11 +1,8 @@
-import React, {useEffect, useState} from 'react';
 import UiSelect from "../../ui/UiSelect/UiSelect.jsx";
 import UiSort from "../../ui/UiSort/UiSort.jsx";
 import {useSelectData} from "../../../hooks/useSelectData.js";
 
 const SelectGroup = ({changeFilter,sortToggle}) => {
-
-
         const {
             genres, setGenres,
             countries, setCountries,

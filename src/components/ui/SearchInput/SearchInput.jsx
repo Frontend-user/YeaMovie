@@ -3,7 +3,7 @@ import searchIcon from '../../../assets/icons/search-icon.svg'
 import {useContext} from "react";
 import {RouteContext} from "../../../context/RoutesProvider.jsx";
 
-const SearchInput = ({onChange, value, search}) => {
+const SearchInput = ({onChange, value}) => {
     const {changeRoute} = useContext(RouteContext)
     return (
 

@@ -1,7 +1,7 @@
 import './FilmDetails.scss'
 import UiButton from "../../ui/UiButton/UiButton.jsx";
 import CharsList from "../../ui/CharsList/CharsList.jsx";
-import {useEffect, useLayoutEffect, useState} from "react";
+import { useState} from "react";
 import WatchLinks from "../WatchLinks/WatchLinks.jsx";
 
 const FilmDetails =
@@ -20,8 +20,6 @@ const FilmDetails =
             {'Жанр:': genre},
             {'Страна:': country},
             {'Год:': year},
-            // {'Жанр:': genre},
-            // {'Страна:': country},
         ])
 
         return (
