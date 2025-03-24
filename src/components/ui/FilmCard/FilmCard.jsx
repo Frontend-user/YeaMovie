@@ -10,10 +10,11 @@ const FilmCard = ({film}) => {
     return (
         <div className="film-card" onClick={handleChangeRoute}>
             <div className="film-card__inner">
-                <img
-                    src={film?.poster?.url || film?.poster?.previewUrl || ''}
-                    alt=""
-                    className="film-card__image"/>
+                {film?.poster?.url || film?.poster?.previewUrl ? <img
+                        src={film?.poster?.url || film?.poster?.previewUrl}
+                        alt=""
+                        className="film-card__image"/>
+                    : <div className="film-card__image"></div>}
                 <div className="film-card__name">{film.name || film.alternativeName}</div>
                 <div className="film-card__footer">
                     <div className="film-card__year">{film.year && `${film.year} г.` || 'Неизвестно'}</div>

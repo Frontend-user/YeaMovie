@@ -67,7 +67,7 @@ const MainPage = ({}) => {
 
         useEffect(() => {
                 const get = async () => {
-                    setFiltersFilmListLoading(true)
+                    // setFiltersFilmListLoading(true)
                     const [data, error, isLoading, paginateInfo] = await filmsApi.getFilmsByFilters({
                         page: 1,
                         limit: 4,
@@ -88,8 +88,7 @@ const MainPage = ({}) => {
             setFilters(pr => ({...pr, ...updatedField}));
         }
 
-        function    prevPage() {
-            console.log('PREVE')
+        function  prevPage() {
             setFilters(pr => ({...pr, page: pr.page - 1}));
 
         }
