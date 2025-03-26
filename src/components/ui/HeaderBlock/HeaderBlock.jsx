@@ -2,10 +2,10 @@ import './HeaderBlock.scss'
 import SearchInput from "../SearchInput/SearchInput.jsx";
 import './HeaderBlock.scss'
 import headerIcon from '../../../assets/icons/kinomonster-icon.svg'
-import {useContext} from "react";
+import {memo, useContext} from "react";
 import {RouteContext} from "../../../context/RoutesProvider.jsx";
 
-const HeaderBlock = () => {
+const HeaderBlock = memo(() => {
     const {changeRoute, searchName, setSearchName} = useContext(RouteContext)
     const handleInputChange = (newValue) => {
         setSearchName(newValue)
@@ -26,6 +26,6 @@ const HeaderBlock = () => {
             </div>
         </div>
     );
-};
+})
 
 export default HeaderBlock;

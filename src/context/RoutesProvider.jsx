@@ -3,7 +3,7 @@ import React, {createContext,  useEffect, useState} from 'react';
 export const RouteContext = createContext()
 const RoutesProvider = ({children}) => {
     const [route, setRoute] = useState(window.location.pathname)
-    const [page, setPage] = useState('/')
+    const [page, setPage] = useState('')
     const [searchName, setSearchName] = useState('')
     const [selectedFilmId, setSelectedFilmId] = useState(1)
     const navigate = (newRoute) => {

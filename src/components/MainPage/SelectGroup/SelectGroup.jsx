@@ -2,7 +2,7 @@ import UiSelect from "../../ui/UiSelect/UiSelect.jsx";
 import UiSort from "../../ui/UiSort/UiSort.jsx";
 import {useSelectData} from "../../../hooks/useSelectData.js";
 
-const SelectGroup = ({changeFilter,sortToggle}) => {
+const SelectGroup = ({changeFilter, sortToggle}) => {
         const {
             genres, setGenres,
             countries, setCountries,
@@ -16,6 +16,8 @@ const SelectGroup = ({changeFilter,sortToggle}) => {
             const name = selectItem(id, item, setItem)
             if (fieldKey === 'typeNumber') {
                 changeFilter({[fieldKey]: id})
+            } else if (fieldKey === 'rating.imdb') {
+                changeFilter({[fieldKey]: `${name}-10`})
             } else {
                 changeFilter({[fieldKey]: name})
             }

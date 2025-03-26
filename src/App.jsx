@@ -3,21 +3,19 @@ import AboutPage from "./pages/AboutPage/AboutPage.jsx";
 import MainPage from "./pages/MainPage/MainPage.jsx";
 import SearchFilmPage from "./pages/SearchFilmPage/SearchFilmPage.jsx";
 import {RouteContext} from "./context/RoutesProvider.jsx";
+import NotFoundPage from "./components/NotFoundPage/NotFoundPage.jsx";
+
 
 function App() {
-    const {page, changeRoute,selectedFilmId} = useContext(RouteContext)
+    const {page, selectedFilmId} = useContext(RouteContext)
+    const pages = {
+        '/': <MainPage/>,
+        '/about-page': <AboutPage filmId={selectedFilmId}/>,
+        '/search': <SearchFilmPage/>
+    };
     return (
         <>
-            {page === '/'
-                ? <MainPage/>
-                : page === '/about-page'
-                    ? <AboutPage filmId={selectedFilmId}/>
-                    : page === '/search'
-                        ? <SearchFilmPage/>
-                        : <div>NOT FOUNT PAGE
-                            <button onClick={() => changeRoute('/')}>GO TO MAINPAGE </button>
-                        </div>
-            }
+            {pages[page] ?? <NotFoundPage/>}
         </>
     )
 }

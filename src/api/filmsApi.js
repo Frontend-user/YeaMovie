@@ -1,67 +1,41 @@
 import {useFetch} from "../hooks/useFetch.js";
 import {API_PATHS} from "../helpers/constants.js";
+import {defineTabsFilmsParams} from "../helpers/helpers.js";
 
 export const filmsApi = {
-    async getPopularFilms() {
-        const [data, error, isLoading] = await useFetch(
-            API_PATHS.MOVIE,
-            {
-                page: 1,
-                limit: 8,
-                isSeries: false,
-                'audience.count': '100000-6666666'
-            })
-        return [data, error, isLoading]
-    },
-    async getPopularSerials() {
-        const [data, error, isLoading] = await useFetch(
-            API_PATHS.MOVIE,
-            {
-                page: 1,
-                limit: 8,
-                isSeries: true,
-                'rating.imdb': '7-10'
-            })
-        return [data, error, isLoading]
-    },
-    async getRandomFilms() {
-        const [data, error, isLoading] = await useFetch(
-            API_PATHS.MOVIE,
-            {
-                page: 1,
-                limit: 8,
-                isSeries: false,
-                'rating.imdb': '8-10',
-                'premiere.country': '!Россия',
-                'audience.count': '10000-6666666'
-            })
-        return [data, error, isLoading]
 
+    getTabsFilms(findSelectedCategoryId) {
+        const params = defineTabsFilmsParams(findSelectedCategoryId)
+        const [filmsList, error, filmsListLoading] = useFetch(
+            API_PATHS.MOVIE, params, true, [findSelectedCategoryId])
+        return [filmsList, error, filmsListLoading]
     },
-    async getFilmsByFilters(filters) {
-        const [data, error, isLoading,paginateInfo] = await useFetch(
-            API_PATHS.MOVIE,
-            {
-                page: 1,
-                limit: 4,
-                ...filters
-            }
-        )
-        return [data, error, isLoading,paginateInfo]
+     getFilmsByFilters(filters) {
+        const [filtersFilmList,
+            error,
+            filtersFilmListLoading
+            , paginateInfo] = useFetch(API_PATHS.MOVIE,
+            filters, true, [filters])
+        return [filtersFilmList,
+            error,
+            filtersFilmListLoading
+            , paginateInfo]
     },
-    async getFilmsBySearchName(filters) {
-        const [data, error, isLoading] = await useFetch(
+     getFilmsBySearchName(searchName,debouncedSearchName) {
+        const [data, error, isLoading] =  useFetch(
             API_PATHS.MOVIE_SEARCH,
             {
-                ...filters,
-            }
-        )
+                page: 1,
+                limit: 6,
+                query: searchName,
+            },
+            true, [debouncedSearchName])
         return [data, error, isLoading]
     },
-    async getFilmById(id) {
+     getFilmById(id) {
         const url = `${API_PATHS.MOVIE}/${id}`
         const [data, error, isLoading] =
-            await useFetch(url,{},false)
+             useFetch(url, {}, false,[id])
         return [data, error, isLoading]
     }
 }

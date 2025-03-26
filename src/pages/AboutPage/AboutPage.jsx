@@ -8,31 +8,18 @@ import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
 import {RouteContext} from "../../context/RoutesProvider.jsx";
 import {filmsApi} from "../../api/filmsApi.js";
 import UiLoading from "../../components/ui/UILoading/UiLoading.jsx";
+import {formatGenre} from "../../helpers/helpers.js";
 
 const AboutPage = ({filmId}) => {
     const {changeRoute} = useContext(RouteContext)
-    const [isLoading, setIsLoading] = useState(true)
-    const [film, setFilm] = useState({})
-    useEffect(() => {
-        const getFilm = async () => {
-            const [data, error, isLoading] = await filmsApi.getFilmById(filmId)
-            setFilm(data)
-            setIsLoading(isLoading)
-        }
-        getFilm()
-    }, [filmId]);
-    const formatGenre = useMemo(() => {
+    const [film, error, isLoading] = filmsApi.getFilmById(filmId)
+
+    const formattedGenres = useMemo(() => {
         if (isLoading) return
         if (!film.genres) return ''
-        let result = ''
-        film.genres.forEach((item, idx) => {
-            result += item.name
-            if (!(idx + 1 >= film.genres.length)) {
-                result += ', '
-            }
-        })
-        return result
+        return formatGenre(film.genres)
     }, [film])
+
     return (
         <div className="about-page">
             <HeaderBlock/>
@@ -49,7 +36,7 @@ const AboutPage = ({filmId}) => {
                             ratingKp={film.rating.kp}
                             ratingImdb={film.rating.imdb}
                             description={film.description}
-                            genre={formatGenre}
+                            genre={formattedGenres}
                             country={film.countries[0].name}
                             year={film.year}
                             watchLinks={film?.watchability?.items}

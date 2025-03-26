@@ -1,17 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import HeaderBlock from "../../components/ui/HeaderBlock/HeaderBlock.jsx";
 import './MainPage.scss'
 import PosterFilm from "../../components/ui/PosterFilm/PosterFilm.jsx";
 import posterImage from '../../assets/images/promo-image.png'
 import CategorySelect from "../../components/ui/CategorySelect/CategorySelect.jsx";
 import UiButton from "../../components/ui/UiButton/UiButton.jsx";
-import FilmList from "../../components/ui/FilmList/FilmList.jsx";
 import FooterBlock from "../../components/ui/FooterBlock/FooterBlock.jsx";
-import {filmsApi} from "../../api/filmsApi.js";
 import SelectGroup from "../../components/MainPage/SelectGroup/SelectGroup.jsx";
 import {useSelectData} from "../../hooks/useSelectData.js";
-import UiLoading from "../../components/ui/UILoading/UiLoading.jsx";
-import UiPaginate from "../../components/ui/UiPaginate/UiPaginate.jsx";
+import FilmsSelect from "../../components/MainPage/FilmsSelect/FilmsSelect.jsx";
+import FilmsTabs from "../../components/MainPage/FilmsTabs/FilmsTabs.jsx";
 
 const {title, filmName, description, buttonText} = {
     title: 'УЖЕ В КИНО',
@@ -28,55 +26,7 @@ const MainPage = ({}) => {
             filters, setFilters,
             selectItem,
         } = useSelectData();
-        const [filmsList, setFilmsList] = useState([])
 
-        const [filmsListLoading, setFilmsListLoading] = useState(true)
-        const [filtersFilmListLoading, setFiltersFilmListLoading] = useState(true)
-        const [filtersFilmList, setFiltersFilmList] = useState([])
-        const [paginateInfo, setPaginateInfo] = useState({
-            total: 0,
-            limit: 8,
-            page: 1,
-            pages: 0,
-        })
-        useEffect(() => {
-            async function getData() {
-                setFilmsListLoading(true)
-                const findSelectedCategoryId = filmCategories.findIndex((item) => item.selected) + 1
-                if (findSelectedCategoryId === 1) {
-                    const [data, error, isLoading] = await filmsApi.getPopularFilms()
-                    setFilmsList(data)
-                    setFilmsListLoading(isLoading)
-                } else if (findSelectedCategoryId === 2) {
-                    const [data, error, isLoading] = await filmsApi.getPopularSerials()
-                    setFilmsList(data)
-                    setFilmsListLoading(isLoading)
-                } else if (findSelectedCategoryId === 3) {
-                    const [data, error, isLoading] = await filmsApi.getRandomFilms()
-                    setFilmsList(data)
-                    setFilmsListLoading(isLoading)
-                }
-            }
-
-            getData()
-        }, [filmCategories]);
-
-        useEffect(() => {
-                const get = async () => {
-                    // setFiltersFilmListLoading(true)
-                    const [data, error, isLoading, paginateInfo] = await filmsApi.getFilmsByFilters({
-                        page: 1,
-                        limit: 4,
-                        ...filters
-                    })
-                    setFiltersFilmList(data)
-                    setPaginateInfo(paginateInfo)
-                    setFiltersFilmListLoading(isLoading)
-                }
-
-                get()
-            }, [filters]
-        )
         const sortToggle = () => {
             setFilters(pr => ({...pr, sortType: pr.sortType === 1 ? -1 : 1}));
         }
@@ -84,15 +34,12 @@ const MainPage = ({}) => {
             setFilters(pr => ({...pr, ...updatedField}));
         }
 
-        function prevPage() {
+        const prevPage = useCallback(() => {
             setFilters(pr => ({...pr, page: pr.page - 1}));
-
-        }
-
-        function nextPage() {
+        }, [])
+        const nextPage = useCallback(() => {
             setFilters(pr => ({...pr, page: pr.page + 1}));
-
-        }
+        }, [])
 
         return (
             <div className="main-page">
@@ -118,11 +65,7 @@ const MainPage = ({}) => {
                             <UiButton text='Смотреть все' type="arrow-right"/>
                         </div>
                         <div className="main-page__film-list-wrapper">
-                            {
-                                filmsListLoading ?
-                                    <UiLoading/> :
-                                    <FilmList list={filmsList}/>
-                            }
+                            <FilmsTabs filmCategories={filmCategories}/>
                         </div>
                     </div>
 
@@ -138,25 +81,7 @@ const MainPage = ({}) => {
                             <UiButton text='Смотреть все' type="arrow-right"/>
                         </div>
                         <div className="main-page__film-list-wrapper">
-                            {filtersFilmListLoading ?
-                                <>
-                                    <UiLoading/>
-                                </>
-                                :
-                                <>
-                                    <FilmList list={filtersFilmList}/>
-                                    <UiPaginate
-                                        onClick
-                                        total={paginateInfo.total}
-                                        page={paginateInfo.page}
-                                        pages={paginateInfo.pages}
-                                        limit={paginateInfo.limit}
-                                        prevPage={prevPage}
-                                        nextPage={nextPage}
-
-                                    />
-                                </>
-                            }
+                            <FilmsSelect filters={filters} nextPage={nextPage} prevPage={prevPage}/>
                         </div>
                     </div>
                 </div>

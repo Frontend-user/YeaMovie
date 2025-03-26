@@ -1,18 +1,10 @@
 import React from 'react';
 import './BigFilmList.scss'
 import BigFilmCard from "../../ui/BigFilmCard/BigFilmCard.jsx";
+import {formatGenre} from "../../../helpers/helpers.js";
 
 const BigFilmList = ({list}) => {
-    const formatGenre = (genres) => {
-        let result = ''
-        genres.forEach((item, idx) => {
-            result += item.name
-            if (!(idx + 1 >= genres.length)) {
-                result += ', '
-            }
-        })
-        return result
-    }
+
     return (
         <div className="big-film-list">
             <div className="big-film-list__cards-wrap">
@@ -26,7 +18,7 @@ const BigFilmList = ({list}) => {
                         ratingImdb={film.rating.imdb}
                         description={film.description}
                         genre={formatGenre(film.genres)}
-                        country={film.countries[0].name}
+                        country={film?.countries?.length ? film?.countries[0]?.name : ''}
                         year={film.year}
                         film={film}
                     />

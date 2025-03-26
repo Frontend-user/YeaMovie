@@ -1,9 +1,9 @@
 import './SearchInput.scss'
 import searchIcon from '../../../assets/icons/search-icon.svg'
-import {useContext} from "react";
+import {memo, useContext } from "react";
 import {RouteContext} from "../../../context/RoutesProvider.jsx";
 
-const SearchInput = ({onChange, value}) => {
+const SearchInput = memo(({onChange, value}) => {
     const {changeRoute} = useContext(RouteContext)
     return (
 
@@ -20,6 +20,6 @@ const SearchInput = ({onChange, value}) => {
                 src={searchIcon} alt=""/>
         </div>
     );
-};
+})
 
 export default SearchInput;
