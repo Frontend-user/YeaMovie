@@ -1,7 +1,7 @@
 import './FilmDetails.scss'
 import UiButton from "../../ui/UiButton/UiButton.jsx";
 import CharsList from "../../ui/CharsList/CharsList.jsx";
-import { useState} from "react";
+import {useState} from "react";
 import WatchLinks from "../WatchLinks/WatchLinks.jsx";
 
 const FilmDetails =
@@ -40,7 +40,7 @@ const FilmDetails =
                     <div className="film-details__right">
                         <div className="film-details__header">
                             <div className={`film-details__name 
-                            ${name.length > 10 ? 'film-details__name_small' : 'film-details__name'}`}>{name}</div>
+                            ${name && name?.length > 10 ? 'film-details__name_small' : 'film-details__name'}`}>{name}</div>
                             <div>
                                 <UiButton className="film-details__button" text="В избранное"/>
 
