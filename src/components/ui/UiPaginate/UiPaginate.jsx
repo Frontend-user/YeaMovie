@@ -24,8 +24,6 @@ const UiPaginate = ({
     return (
         <div className="ui-paginate">
             <div className="ui-paginate__inner">
-                {/*prevIcon*/}
-                {/*nextIcon*/}
                 <button disabled={!(page - 1 > 0)} onClick={() => handlePrevPage()}
                         className="ui-paginate__prev">
                     <img src={prevIcon} alt=""/>

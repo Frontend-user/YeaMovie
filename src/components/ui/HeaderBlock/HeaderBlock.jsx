@@ -11,16 +11,12 @@ const HeaderBlock = memo(() => {
         setSearchName(newValue)
     }
 
-    const searchFilms = () => {
-
-    }
     return (
         <div className="header">
             <div className="header__inner">
                 <img onClick={() => changeRoute('/')} src={headerIcon} alt="" className="header__logo"/>
                 <div className="header__search-wrapper">
                     <SearchInput
-                        search={searchFilms}
                         value={searchName} onChange={(v) => handleInputChange(v)}/>
                 </div>
             </div>
